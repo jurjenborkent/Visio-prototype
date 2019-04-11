@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Spraak naar tekst
 //
-//  Created by Laurens Post
+//  Created by Laurens Post, Jurjen Borkent, Niels Ettema en Thijs Govers
 //
 
 import UIKit
