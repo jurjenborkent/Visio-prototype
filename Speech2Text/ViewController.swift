@@ -18,10 +18,25 @@ class ViewController: UIViewController {
     
     var speechData: [Speech]!
     
+    lazy var speechRecognizer: SFSpeechRecognizer? = {
+        if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
+            recognizer.delegate = self
+            return recognizer
+        }
+        return nil
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
 }
+
+extension ViewController: SFSpeechRecognizerDelegate {}
+
+extension ViewController: UITableViewDelegate {}
+
+extension ViewController: UITableViewDataSource {}
 
 
 
