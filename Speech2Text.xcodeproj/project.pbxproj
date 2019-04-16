@@ -12,6 +12,8 @@
 		8973353A207A940500B8C1F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89733538207A940500B8C1F9 /* Main.storyboard */; };
 		8973353C207A940600B8C1F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8973353B207A940600B8C1F9 /* Assets.xcassets */; };
 		8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */; };
+		C9553B3F225F6549004B1999 /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B3E225F6549004B1999 /* Speech.swift */; };
+		C9553B41225F6750004B1999 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B40225F6750004B1999 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8973353B207A940600B8C1F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8973353E207A940600B8C1F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89733540207A940600B8C1F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9553B3E225F6549004B1999 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
+		C9553B40225F6750004B1999 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				8973353B207A940600B8C1F9 /* Assets.xcassets */,
 				8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */,
 				89733540207A940600B8C1F9 /* Info.plist */,
+				C9553B3E225F6549004B1999 /* Speech.swift */,
+				C9553B40225F6750004B1999 /* CustomCell.swift */,
 			);
 			path = Speech2Text;
 			sourceTree = "<group>";
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9553B3F225F6549004B1999 /* Speech.swift in Sources */,
 				89733537207A940500B8C1F9 /* ViewController.swift in Sources */,
+				C9553B41225F6750004B1999 /* CustomCell.swift in Sources */,
 				89733535207A940500B8C1F9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
