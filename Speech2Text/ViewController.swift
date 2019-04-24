@@ -51,7 +51,6 @@ class ViewController: UIViewController {
         // hide recording views
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -136,6 +135,9 @@ class ViewController: UIViewController {
                 let sentence = result.bestTranscription.formattedString
                 self.recordedMessage.text = sentence
                 print(self.recordedMessage.text)
+                isFinal = result.isFinal
+                
+                self.recordedMessage.text = "Jump"
                 
                 if self.recordedMessage.text == "Jump" {
                     
@@ -149,35 +151,11 @@ class ViewController: UIViewController {
                     audioPlayer!.prepareToPlay()
                     audioPlayer!.play()
                     
-                    print("Succeed to play the Kat sound.")
+                    print("Succeed to play the sound.")
                 }
-                else {
-                    self.recordedMessage.text = ""
-                }
-                
-                isFinal = result.isFinal
             }
             
-            print(self.recordedMessage.text)
-            
-            if self.recordedMessage.text == "Kat" {
-                
-                var audioPlayer: AVAudioPlayer?
-                let alertSound = URL(fileURLWithPath: Bundle.main.path(forResource: "Kat", ofType: "mp3")!)
-                
-                try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                try! AVAudioSession.sharedInstance().setActive(true)
-                
-                try! audioPlayer = AVAudioPlayer(contentsOf: alertSound)
-                audioPlayer!.prepareToPlay()
-                audioPlayer!.play()
-                
-                print("Succeed to play the Kat sound.")
-            }
-            else {
-                self.recordedMessage.text = ""
-            }
-            
+
             if error != nil || isFinal {
                 self.audioEngine.stop()
                 self.audioEngine.inputNode.removeTap(onBus: 0)
