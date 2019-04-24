@@ -14,6 +14,7 @@
 		8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */; };
 		C9553B3F225F6549004B1999 /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B3E225F6549004B1999 /* Speech.swift */; };
 		C9553B41225F6750004B1999 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B40225F6750004B1999 /* CustomCell.swift */; };
+		C95D7AB7226F4100002FDB0B /* Kat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C95D7AB6226F4100002FDB0B /* Kat.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		89733540207A940600B8C1F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9553B3E225F6549004B1999 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		C9553B40225F6750004B1999 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		C95D7AB6226F4100002FDB0B /* Kat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Kat.mp3; path = Assets.xcassets/Kat.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				89733536207A940500B8C1F9 /* ViewController.swift */,
 				89733538207A940500B8C1F9 /* Main.storyboard */,
 				8973353B207A940600B8C1F9 /* Assets.xcassets */,
+				C95D7AB6226F4100002FDB0B /* Kat.mp3 */,
 				8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */,
 				89733540207A940600B8C1F9 /* Info.plist */,
 				C9553B3E225F6549004B1999 /* Speech.swift */,
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */,
+				C95D7AB7226F4100002FDB0B /* Kat.mp3 in Resources */,
 				8973353C207A940600B8C1F9 /* Assets.xcassets in Resources */,
 				8973353A207A940500B8C1F9 /* Main.storyboard in Resources */,
 			);

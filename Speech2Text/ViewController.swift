@@ -7,6 +7,7 @@
 
 import UIKit
 import Speech
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -91,7 +92,7 @@ class ViewController: UIViewController {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             audioEngine.inputNode.removeTap(onBus: 0)
-            self.speechData.append(Speech(Title: "New Recording", Date: Date(), Text: self.recordedMessage.text!))
+            /* self.speechData.append(Speech(Title: "New Recording", Date: Date(), Text: self.recordedMessage.text!)) */
             
             UIView.animate(withDuration: 0.5, animations: {
                 self.fadedView.alpha = 0.0
@@ -103,7 +104,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func startRecording() {
+     func startRecording() {
         
         if let recognitionTask = self.recognitionTask {
             recognitionTask.cancel()
@@ -134,7 +135,47 @@ class ViewController: UIViewController {
             if let result = result {
                 let sentence = result.bestTranscription.formattedString
                 self.recordedMessage.text = sentence
+                print(self.recordedMessage.text)
+                
+                if self.recordedMessage.text == "Jump" {
+                    
+                    var audioPlayer: AVAudioPlayer?
+                    let alertSound = URL(fileURLWithPath: Bundle.main.path(forResource: "Kat", ofType: "mp3")!)
+                    
+                    try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                    try! AVAudioSession.sharedInstance().setActive(true)
+                    
+                    try! audioPlayer = AVAudioPlayer(contentsOf: alertSound)
+                    audioPlayer!.prepareToPlay()
+                    audioPlayer!.play()
+                    
+                    print("Succeed to play the Kat sound.")
+                }
+                else {
+                    self.recordedMessage.text = ""
+                }
+                
                 isFinal = result.isFinal
+            }
+            
+            print(self.recordedMessage.text)
+            
+            if self.recordedMessage.text == "Kat" {
+                
+                var audioPlayer: AVAudioPlayer?
+                let alertSound = URL(fileURLWithPath: Bundle.main.path(forResource: "Kat", ofType: "mp3")!)
+                
+                try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try! AVAudioSession.sharedInstance().setActive(true)
+                
+                try! audioPlayer = AVAudioPlayer(contentsOf: alertSound)
+                audioPlayer!.prepareToPlay()
+                audioPlayer!.play()
+                
+                print("Succeed to play the Kat sound.")
+            }
+            else {
+                self.recordedMessage.text = ""
             }
             
             if error != nil || isFinal {
@@ -160,7 +201,26 @@ class ViewController: UIViewController {
         }
         
     }
-
+    
+/*    func playSound() {
+        guard let url = Bundle.main.url(forResource: "Kat", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, mode:
+                 AVAudioSessionModeDefault, options: [AVAudioSession.CategoryOptions.mixWithOthers])
+            
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            guard let player = player else { return }
+            
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+*/
 }
 
 extension ViewController: SFSpeechRecognizerDelegate {}
@@ -173,27 +233,9 @@ extension ViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomCell
-        let memo = speechData[indexPath.row]
-        cell.titleLabel.text = memo.Title
-        cell.dateLabel.text = memo.Date.description
-        cell.memoLabel.text = memo.Text
         return cell
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
