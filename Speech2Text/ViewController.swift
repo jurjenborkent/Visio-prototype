@@ -163,8 +163,6 @@ class ViewController: UIViewController {
                     } catch {
                         print("Failed to play the sound")
                     }
-                    self.recordedMessage.text = ""
-                    print("Cleared the string")
                 }
             }
             else {
