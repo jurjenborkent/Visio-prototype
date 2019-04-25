@@ -145,14 +145,12 @@ class ViewController: UIViewController {
             var isFinal = false
             if let result = result {
                 let sentence = result.bestTranscription.formattedString
-                print(sentence)
-                self.recordedMessage.text = sentence
+                self.recordedMessage.text = sentence.components(separatedBy: " ").first
                 print(self.recordedMessage.text)
                 isFinal = result.isFinal
                 
-                self.recordedMessage.text = "Spring"
-                
-                if self.recordedMessage.text == "Spring" || self.recordedMessage.text == "Jump" {
+                if self.recordedMessage.text == "Spring" || self.recordedMessage.text == "Jump"
+                || self.recordedMessage.text == "Jill" {
                     
                     let path = Bundle.main.path(forResource: "Jump.wav", ofType:nil)!
                     let url = URL(fileURLWithPath: path)
@@ -173,8 +171,7 @@ class ViewController: UIViewController {
                 self.recordedMessage.text = ""
                 print("String is empy")
             }
-            
-
+        
             if error != nil || isFinal {
                 self.audioEngine.stop()
                 self.audioEngine.inputNode.removeTap(onBus: 0)
