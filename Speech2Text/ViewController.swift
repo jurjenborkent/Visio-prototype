@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var recordedMessage: UITextView!
     
     var speechData: [Speech]!
+    var SoundEffect: AVAudioPlayer?
     
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
@@ -51,6 +52,17 @@ class ViewController: UIViewController {
         // hide recording views
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
+        
+        let path = Bundle.main.path(forResource: "Kat.mp3", ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            self.SoundEffect = try AVAudioPlayer(contentsOf: url)
+         //   self.SoundEffect?.play()
+            print("Startup sound working!")
+        } catch {
+            print("Failed to play startup sound")
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -133,26 +145,33 @@ class ViewController: UIViewController {
             var isFinal = false
             if let result = result {
                 let sentence = result.bestTranscription.formattedString
+                print(sentence)
                 self.recordedMessage.text = sentence
                 print(self.recordedMessage.text)
                 isFinal = result.isFinal
                 
-                self.recordedMessage.text = "Jump"
+                self.recordedMessage.text = "Spring"
                 
-                if self.recordedMessage.text == "Jump" {
+                if self.recordedMessage.text == "Spring" || self.recordedMessage.text == "Jump" {
                     
-                    var audioPlayer: AVAudioPlayer?
-                    let alertSound = URL(fileURLWithPath: Bundle.main.path(forResource: "Kat", ofType: "mp3")!)
+                    let path = Bundle.main.path(forResource: "Jump.wav", ofType:nil)!
+                    let url = URL(fileURLWithPath: path)
                     
-                    try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                    try! AVAudioSession.sharedInstance().setActive(true)
-                    
-                    try! audioPlayer = AVAudioPlayer(contentsOf: alertSound)
-                    audioPlayer!.prepareToPlay()
-                    audioPlayer!.play()
-                    
-                    print("Succeed to play the sound.")
+                    do {
+                        self.SoundEffect = try AVAudioPlayer(contentsOf: url)
+                        self.SoundEffect?.play()
+                        print("Sound working")
+                       
+                    } catch {
+                        print("Failed to play the sound")
+                    }
+                    self.recordedMessage.text = ""
+                    print("Cleared the string")
                 }
+            }
+            else {
+                self.recordedMessage.text = ""
+                print("String is empy")
             }
             
 
