@@ -19,8 +19,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var recordedMessage: UITextView!
     
     var speechData: [Speech]!
-    var SoundEffect: AVAudioPlayer?
-    
+    var BackgroundSound: AVAudioPlayer?
+    var JumpSound: AVAudioPlayer?
+    var RockSound: AVAudioPlayer?
+
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
             recognizer.delegate = self
@@ -57,12 +59,53 @@ class ViewController: UIViewController {
         let url = URL(fileURLWithPath: path)
         
         do {
-            self.SoundEffect = try AVAudioPlayer(contentsOf: url)
-            self.SoundEffect?.play()
+            self.BackgroundSound?.pause()
+            self.BackgroundSound = try AVAudioPlayer(contentsOf: url)
+            self.BackgroundSound?.play()
             print("Startup sound working!")
         } catch {
             print("Failed to play startup sound")
         }
+        
+        let seconds = 3.0 //Time To Delay
+        let when = DispatchTime.now() + seconds
+        
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                self.RockSound?.pause()
+                self.RockSound = try AVAudioPlayer(contentsOf: url)
+                self.RockSound?.play()
+                print("Rock sound working!")
+            } catch {
+                print("Failed to play rock sound")
+            }
+        }
+        
+        let rockSeconds = 10.0 //Time To Delay
+        let whenSound = DispatchTime.now() + rockSeconds
+        
+        DispatchQueue.main.asyncAfter(deadline: whenSound) {
+            let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                self.RockSound?.pause()
+                self.RockSound = try AVAudioPlayer(contentsOf: url)
+                self.RockSound?.play()
+                print("Rock sound working!")
+            } catch {
+                print("Failed to play rock sound")
+            }
+        }
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -123,7 +166,7 @@ class ViewController: UIViewController {
             self.recognitionTask = nil
         }
         
-        self.recordedMessage.text = ""
+       // self.recordedMessage.text = ""
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -167,8 +210,11 @@ class ViewController: UIViewController {
                         let url = URL(fileURLWithPath: path)
                         
                         do {
-                            self.SoundEffect = try AVAudioPlayer(contentsOf: url)
-                            self.SoundEffect?.play()
+                            self.JumpSound = try! AVAudioPlayer(contentsOf: url)
+                            self.JumpSound?.play()
+                            
+                            // self.SoundEffect = try AVAudioPlayer(contentsOf: url)
+                            // self.SoundEffect?.play()
                             print("Sound working")
                             
                             self.recordedMessage.text = ""
@@ -239,7 +285,6 @@ class ViewController: UIViewController {
         }catch {
             print(error)
         }
-        
     }
     
 /*    func playSound() {
