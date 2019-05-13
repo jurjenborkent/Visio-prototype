@@ -14,8 +14,11 @@
 		8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */; };
 		C9553B3F225F6549004B1999 /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B3E225F6549004B1999 /* Speech.swift */; };
 		C9553B41225F6750004B1999 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B40225F6750004B1999 /* CustomCell.swift */; };
-		F4144EC52271CC310047A00B /* Jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4144EC42271CC310047A00B /* Jump.wav */; };
 		F4A8556D2271B1980098F481 /* Kat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4A8556C2271B1980098F481 /* Kat.mp3 */; };
+		F4B80DAF22897377007747F2 /* Jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4B80DAD22897377007747F2 /* Jump.wav */; };
+		F4B80DB222897383007747F2 /* Mario-coin-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */; };
+		F4B80DB422897389007747F2 /* jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4B80DB322897389007747F2 /* jump.mp3 */; };
+		F4B80DB6228982EE007747F2 /* running.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4B80DB5228982EE007747F2 /* running.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,8 +31,11 @@
 		89733540207A940600B8C1F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9553B3E225F6549004B1999 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		C9553B40225F6750004B1999 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		F4144EC42271CC310047A00B /* Jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Jump.wav; path = ../../../../Desktop/Jump.wav; sourceTree = "<group>"; };
 		F4A8556C2271B1980098F481 /* Kat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Kat.mp3; path = Assets.xcassets/Kat.mp3; sourceTree = "<group>"; };
+		F4B80DAD22897377007747F2 /* Jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Jump.wav; path = ../../../../.Trash/Jump.wav; sourceTree = "<group>"; };
+		F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Mario-coin-sound.mp3"; path = "../../../../.Trash/Mario-coin-sound.mp3"; sourceTree = "<group>"; };
+		F4B80DB322897389007747F2 /* jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jump.mp3; path = ../../../../Downloads/jump.mp3; sourceTree = "<group>"; };
+		F4B80DB5228982EE007747F2 /* running.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = running.mp3; path = "../../../../Downloads/Man-running-on-dry-leaves/running.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +68,12 @@
 		89733533207A940500B8C1F9 /* Speech2Text */ = {
 			isa = PBXGroup;
 			children = (
-				F4144EC42271CC310047A00B /* Jump.wav */,
+				F4B80DAD22897377007747F2 /* Jump.wav */,
 				F4A8556C2271B1980098F481 /* Kat.mp3 */,
+				F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */,
+				F4B80DB322897389007747F2 /* jump.mp3 */,
 				89733534207A940500B8C1F9 /* AppDelegate.swift */,
+				F4B80DB5228982EE007747F2 /* running.mp3 */,
 				89733536207A940500B8C1F9 /* ViewController.swift */,
 				89733538207A940500B8C1F9 /* Main.storyboard */,
 				8973353B207A940600B8C1F9 /* Assets.xcassets */,
@@ -135,9 +144,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */,
-				F4144EC52271CC310047A00B /* Jump.wav in Resources */,
+				F4B80DAF22897377007747F2 /* Jump.wav in Resources */,
+				F4B80DB6228982EE007747F2 /* running.mp3 in Resources */,
 				F4A8556D2271B1980098F481 /* Kat.mp3 in Resources */,
 				8973353C207A940600B8C1F9 /* Assets.xcassets in Resources */,
+				F4B80DB422897389007747F2 /* jump.mp3 in Resources */,
+				F4B80DB222897383007747F2 /* Mario-coin-sound.mp3 in Resources */,
 				8973353A207A940500B8C1F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

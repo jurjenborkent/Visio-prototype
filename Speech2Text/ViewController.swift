@@ -53,12 +53,12 @@ class ViewController: UIViewController {
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
         
-        let path = Bundle.main.path(forResource: "Kat.mp3", ofType:nil)!
+        let path = Bundle.main.path(forResource: "running.mp3", ofType:nil)!
         let url = URL(fileURLWithPath: path)
         
         do {
             self.SoundEffect = try AVAudioPlayer(contentsOf: url)
-         //   self.SoundEffect?.play()
+            self.SoundEffect?.play()
             print("Startup sound working!")
         } catch {
             print("Failed to play startup sound")
@@ -103,6 +103,7 @@ class ViewController: UIViewController {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             audioEngine.inputNode.removeTap(onBus: 0)
+            
             /* self.speechData.append(Speech(Title: "New Recording", Date: Date(), Text: self.recordedMessage.text!)) */
             
             UIView.animate(withDuration: 0.5, animations: {
@@ -146,10 +147,56 @@ class ViewController: UIViewController {
             if let result = result {
                 let sentence = result.bestTranscription.formattedString
                 self.recordedMessage.text = sentence.components(separatedBy: " ").first
-                print(self.recordedMessage.text)
-                isFinal = result.isFinal
                 
-                if self.recordedMessage.text == "Spring" || self.recordedMessage.text == "Jump"
+              //  sentence = sentence.components(separatedBy: " ").first!
+                    
+                isFinal = result.isFinal
+
+                print("Recordedmessage:", self.recordedMessage.text)
+                print("Sentence:", sentence)
+                print("Results:", result.bestTranscription.formattedString)
+                
+                self.recordedMessage.text = "Jump"
+                
+                if self.recordedMessage.text != nil {
+                 //   print("String is not empty")
+                    if sentence == "Spring" || self.recordedMessage.text == "Jump"
+                        || self.recordedMessage.text == "Jill" {
+                        
+                        let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
+                        let url = URL(fileURLWithPath: path)
+                        
+                        do {
+                            self.SoundEffect = try AVAudioPlayer(contentsOf: url)
+                            self.SoundEffect?.play()
+                            print("Sound working")
+                            
+                            self.recordedMessage.text = ""
+                            let result = EMPTY
+                            let sentence = EMPTY
+                            print("Recordedmessage2:", self.recordedMessage.text)
+                            print("Sentence2:", sentence)
+                            print("Results2:", result)
+                            
+                        } catch {
+                            print("Failed to play the sound")
+                        }
+                        
+                    }
+                    else {
+                    self.recordedMessage.text = "Jump"
+                    let result = EMPTY
+                    let sentence = EMPTY
+                        print("Recordedmessage2:", self.recordedMessage.text)
+                        print("Sentence2:", sentence)
+                        print("Results2:", result)
+                     //   print("String is empty")
+                        isFinal = false
+                    }
+                }
+            }
+            
+       /*         if self.recordedMessage.text == "Spring" || self.recordedMessage.text == "Jump"
                 || self.recordedMessage.text == "Jill" {
                     
                     let path = Bundle.main.path(forResource: "Jump.wav", ofType:nil)!
@@ -169,6 +216,7 @@ class ViewController: UIViewController {
                 self.recordedMessage.text = ""
                 print("String is empy")
             }
+ */
         
             if error != nil || isFinal {
                 self.audioEngine.stop()
