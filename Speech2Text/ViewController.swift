@@ -67,10 +67,10 @@ class ViewController: UIViewController {
             print("Failed to play startup sound")
         }
         
-        let seconds = 3.0 //Time To Delay
-        let when = DispatchTime.now() + seconds
+        let rockFirstFallingDelay = 3.0 // Time To Delay
+        let whenFirstFall = DispatchTime.now() + rockFirstFallingDelay
         
-        DispatchQueue.main.asyncAfter(deadline: when) {
+        DispatchQueue.main.asyncAfter(deadline: whenFirstFall) {
             let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
             let url = URL(fileURLWithPath: path)
             
@@ -84,10 +84,10 @@ class ViewController: UIViewController {
             }
         }
         
-        let rockSeconds = 10.0 //Time To Delay
-        let whenSound = DispatchTime.now() + rockSeconds
+        let rockSecondFallingDelay = 10.0 //Time To Delay
+        let whenSecondFall = DispatchTime.now() + rockSecondFallingDelay
         
-        DispatchQueue.main.asyncAfter(deadline: whenSound) {
+        DispatchQueue.main.asyncAfter(deadline: whenSecondFall) {
             let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
             let url = URL(fileURLWithPath: path)
             
@@ -101,6 +101,22 @@ class ViewController: UIViewController {
             }
         }
         
+        let rockThirdFallingDelay = 18.0 //Time To Delay
+        let whenThirdFall = DispatchTime.now() + rockThirdFallingDelay
+        
+        DispatchQueue.main.asyncAfter(deadline: whenThirdFall) {
+            let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                self.RockSound?.pause()
+                self.RockSound = try AVAudioPlayer(contentsOf: url)
+                self.RockSound?.play()
+                print("Rock sound working!")
+            } catch {
+                print("Failed to play rock sound")
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -120,7 +136,6 @@ class ViewController: UIViewController {
                     self.recordButton.isEnabled = true
                 case .denied, .notDetermined, .restricted:
                     self.recordButton.isEnabled = false
-                    
                 }
             }
         }
@@ -190,8 +205,6 @@ class ViewController: UIViewController {
             if let result = result {
                 let sentence = result.bestTranscription.formattedString
                 self.recordedMessage.text = sentence.components(separatedBy: " ").first
-                
-              //  sentence = sentence.components(separatedBy: " ").first!
                     
                 isFinal = result.isFinal
 
@@ -210,11 +223,9 @@ class ViewController: UIViewController {
                         let url = URL(fileURLWithPath: path)
                         
                         do {
-                            self.JumpSound = try! AVAudioPlayer(contentsOf: url)
+                            self.JumpSound = try AVAudioPlayer(contentsOf: url)
                             self.JumpSound?.play()
                             
-                            // self.SoundEffect = try AVAudioPlayer(contentsOf: url)
-                            // self.SoundEffect?.play()
                             print("Sound working")
                             
                             self.recordedMessage.text = ""
@@ -227,9 +238,7 @@ class ViewController: UIViewController {
                         } catch {
                             print("Failed to play the sound")
                         }
-                        
-                    }
-                    else {
+                    } else {
                     self.recordedMessage.text = "Jump"
                     let result = EMPTY
                     let sentence = EMPTY
@@ -241,28 +250,6 @@ class ViewController: UIViewController {
                     }
                 }
             }
-            
-       /*         if self.recordedMessage.text == "Spring" || self.recordedMessage.text == "Jump"
-                || self.recordedMessage.text == "Jill" {
-                    
-                    let path = Bundle.main.path(forResource: "Jump.wav", ofType:nil)!
-                    let url = URL(fileURLWithPath: path)
-                    
-                    do {
-                        self.SoundEffect = try AVAudioPlayer(contentsOf: url)
-                        self.SoundEffect?.play()
-                        print("Sound working")
-                       
-                    } catch {
-                        print("Failed to play the sound")
-                    }
-                }
-            }
-            else {
-                self.recordedMessage.text = ""
-                print("String is empy")
-            }
- */
         
             if error != nil || isFinal {
                 self.audioEngine.stop()
@@ -271,7 +258,6 @@ class ViewController: UIViewController {
                 self.recognitionTask = nil
                 self.recordButton.isEnabled = true
             }
-            
         })
         
         let recordingFormat = audioEngine.inputNode.outputFormat(forBus: 0)
@@ -280,38 +266,16 @@ class ViewController: UIViewController {
         }
         
         audioEngine.prepare()
-        do{
+        do {
             try audioEngine.start()
-        }catch {
+        } catch {
             print(error)
         }
     }
-    
-/*    func playSound() {
-        guard let url = Bundle.main.url(forResource: "Kat", withExtension: "mp3") else { return }
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, mode:
-                 AVAudioSessionModeDefault, options: [AVAudioSession.CategoryOptions.mixWithOthers])
-            
-            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            
-            guard let player = player else { return }
-            
-            player.play()
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-*/
 }
 
 extension ViewController: SFSpeechRecognizerDelegate {}
-
 extension ViewController: UITableViewDelegate {}
-
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return speechData.count

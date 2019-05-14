@@ -14,7 +14,6 @@
 		8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */; };
 		C9553B3F225F6549004B1999 /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B3E225F6549004B1999 /* Speech.swift */; };
 		C9553B41225F6750004B1999 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B40225F6750004B1999 /* CustomCell.swift */; };
-		F4A8556D2271B1980098F481 /* Kat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4A8556C2271B1980098F481 /* Kat.mp3 */; };
 		F4B80DAF22897377007747F2 /* Jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4B80DAD22897377007747F2 /* Jump.wav */; };
 		F4B80DB222897383007747F2 /* Mario-coin-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */; };
 		F4B80DB422897389007747F2 /* jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F4B80DB322897389007747F2 /* jump.mp3 */; };
@@ -32,7 +31,6 @@
 		89733540207A940600B8C1F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9553B3E225F6549004B1999 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		C9553B40225F6750004B1999 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		F4A8556C2271B1980098F481 /* Kat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Kat.mp3; path = Assets.xcassets/Kat.mp3; sourceTree = "<group>"; };
 		F4B80DAD22897377007747F2 /* Jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Jump.wav; path = ../../../../.Trash/Jump.wav; sourceTree = "<group>"; };
 		F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Mario-coin-sound.mp3"; path = "../../../../.Trash/Mario-coin-sound.mp3"; sourceTree = "<group>"; };
 		F4B80DB322897389007747F2 /* jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jump.mp3; path = ../../../../Downloads/jump.mp3; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 			isa = PBXGroup;
 			children = (
 				F4B80DAD22897377007747F2 /* Jump.wav */,
-				F4A8556C2271B1980098F481 /* Kat.mp3 */,
 				F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */,
 				F4B80DBD2289A4EB007747F2 /* Rocks.wav */,
 				F4B80DB322897389007747F2 /* jump.mp3 */,
@@ -149,7 +146,6 @@
 				8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */,
 				F4B80DAF22897377007747F2 /* Jump.wav in Resources */,
 				F4B80DB6228982EE007747F2 /* running.mp3 in Resources */,
-				F4A8556D2271B1980098F481 /* Kat.mp3 in Resources */,
 				F4B80DBE2289A4EC007747F2 /* Rocks.wav in Resources */,
 				8973353C207A940600B8C1F9 /* Assets.xcassets in Resources */,
 				F4B80DB422897389007747F2 /* jump.mp3 in Resources */,
