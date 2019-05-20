@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     var BackgroundSound: AVAudioPlayer?
     var JumpSound: AVAudioPlayer?
     var RockSound: AVAudioPlayer?
-
+    
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
             recognizer.delegate = self
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
             }
         }
         
-        let rockThirdFallingDelay = 18.0 //Time To Delay
+        let rockThirdFallingDelay = 22.0 //Time To Delay
         let whenThirdFall = DispatchTime.now() + rockThirdFallingDelay
         
         DispatchQueue.main.asyncAfter(deadline: whenThirdFall) {
@@ -115,6 +115,40 @@ class ViewController: UIViewController {
                 print("Rock sound working!")
             } catch {
                 print("Failed to play rock sound")
+            }
+        }
+        
+        let rockFourthFallingDelay = 35.0 //Time To Delay
+        let whenFourthFall = DispatchTime.now() + rockFourthFallingDelay
+        
+        DispatchQueue.main.asyncAfter(deadline: whenFourthFall) {
+            let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                self.RockSound?.pause()
+                self.RockSound = try AVAudioPlayer(contentsOf: url)
+                self.RockSound?.play()
+                print("Rock sound working!")
+            } catch {
+                print("Failed to play rock sound")
+            }
+        }
+        
+        let endTheGameDelay = 40.0 //Time To Delay
+        let whenToEndTheGame = DispatchTime.now() + endTheGameDelay
+        
+        DispatchQueue.main.asyncAfter(deadline: whenToEndTheGame) {
+            let path = Bundle.main.path(forResource: "you-win.mp3", ofType:nil)!
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                self.BackgroundSound?.pause()
+                self.BackgroundSound = try AVAudioPlayer(contentsOf: url)
+                self.BackgroundSound?.play()
+                print("End game sound working!")
+            } catch {
+                print("Failed to play end game sound")
             }
         }
     }
@@ -161,9 +195,6 @@ class ViewController: UIViewController {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             audioEngine.inputNode.removeTap(onBus: 0)
-            
-            /* self.speechData.append(Speech(Title: "New Recording", Date: Date(), Text: self.recordedMessage.text!)) */
-            
             UIView.animate(withDuration: 0.5, animations: {
                 self.fadedView.alpha = 0.0
             }) { (finished) in
@@ -174,14 +205,14 @@ class ViewController: UIViewController {
         }
     }
     
-     func startRecording() {
+    func startRecording() {
         
         if let recognitionTask = self.recognitionTask {
             recognitionTask.cancel()
             self.recognitionTask = nil
         }
         
-       // self.recordedMessage.text = ""
+        self.recordedMessage.text = ""
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -203,54 +234,59 @@ class ViewController: UIViewController {
             
             var isFinal = false
             if let result = result {
-                let sentence = result.bestTranscription.formattedString
+                var sentence = result.bestTranscription.formattedString
+                // Only pick the first word from the speech
                 self.recordedMessage.text = sentence.components(separatedBy: " ").first
-                    
+                
                 isFinal = result.isFinal
-
+                
                 print("Recordedmessage:", self.recordedMessage.text)
                 print("Sentence:", sentence)
-                print("Results:", result.bestTranscription.formattedString)
                 
-                self.recordedMessage.text = "Jump"
+                // Check if sentence contains a word, if true stop the audio engine
+                if sentence.components(separatedBy: " ").filter({ !$0.isEmpty}).count == 1 {
+                    self.audioEngine.stop()
+                }
                 
-                if self.recordedMessage.text != nil {
-                 //   print("String is not empty")
-                    if sentence == "Spring" || self.recordedMessage.text == "Jump"
-                        || self.recordedMessage.text == "Jill" {
-                        
-                        let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
-                        let url = URL(fileURLWithPath: path)
-                        
-                        do {
-                            self.JumpSound = try AVAudioPlayer(contentsOf: url)
-                            self.JumpSound?.play()
-                            
-                            print("Sound working")
-                            
-                            self.recordedMessage.text = ""
-                            let result = EMPTY
-                            let sentence = EMPTY
-                            print("Recordedmessage2:", self.recordedMessage.text)
-                            print("Sentence2:", sentence)
-                            print("Results2:", result)
-                            
-                        } catch {
-                            print("Failed to play the sound")
-                        }
-                    } else {
-                    self.recordedMessage.text = "Jump"
+                if self.recordedMessage.text  == "Spring" || self.recordedMessage.text == "Jump"
+                    || self.recordedMessage.text == "Jill" {
+                    
+                    let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
+                    let url = URL(fileURLWithPath: path)
+                    do {
+                        self.JumpSound = try AVAudioPlayer(contentsOf: url)
+                        self.JumpSound?.play()
+                        print("Sound working")
+                        self.recordedMessage.text = ""
+                        sentence = ""
+                        print("Recordedmessage2:", self.recordedMessage.text)
+                    } catch {
+                        print("Failed to play the sound")
+                    }
+                } else {
+                    self.recordedMessage.text = ""
                     let result = EMPTY
                     let sentence = EMPTY
-                        print("Recordedmessage2:", self.recordedMessage.text)
-                        print("Sentence2:", sentence)
-                        print("Results2:", result)
-                     //   print("String is empty")
-                        isFinal = false
+                    
+                    print("Recordedmessage2:", self.recordedMessage.text)
+                    print("Sentence2:", sentence)
+                    print("Results2:", result)
+                    //   print("String is empty")
+                    isFinal = false
+                }
+                
+                sentence = ""
+                print("Sentence3:", sentence)
+                if sentence.components(separatedBy: " ").filter({ !$0.isEmpty}).count == 0 {
+                    self.audioEngine.prepare()
+                    do {
+                        try self.audioEngine.start()
+                    } catch {
+                        print(error)
                     }
                 }
             }
-        
+            
             if error != nil || isFinal {
                 self.audioEngine.stop()
                 self.audioEngine.inputNode.removeTap(onBus: 0)
