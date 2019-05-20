@@ -236,20 +236,19 @@ class ViewController: UIViewController {
             if let result = result {
                 var sentence = result.bestTranscription.formattedString
                 // Only pick the first word from the speech
-                self.recordedMessage.text = sentence.components(separatedBy: " ").first
+                
+                // string lastWord = result.BestTranscription.FormattedString.Split(' ')Last();
+                self.recordedMessage.text = sentence.components(separatedBy: " ").last
                 
                 isFinal = result.isFinal
                 
                 print("Recordedmessage:", self.recordedMessage.text)
+                print(result.bestTranscription.formattedString)
+                sentence = ""
                 print("Sentence:", sentence)
                 
-                // Check if sentence contains a word, if true stop the audio engine
-                if sentence.components(separatedBy: " ").filter({ !$0.isEmpty}).count == 1 {
-                    self.audioEngine.stop()
-                }
-                
                 if self.recordedMessage.text  == "Spring" || self.recordedMessage.text == "Jump"
-                    || self.recordedMessage.text == "Jill" {
+                    || self.recordedMessage.text == "Jill" || self.recordedMessage.text == "Jules" || self.recordedMessage.text == "Jim" {
                     
                     let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
                     let url = URL(fileURLWithPath: path)
@@ -260,27 +259,27 @@ class ViewController: UIViewController {
                         self.recordedMessage.text = ""
                         sentence = ""
                         print("Recordedmessage2:", self.recordedMessage.text)
+                        self.audioEngine.stop()
                     } catch {
                         print("Failed to play the sound")
                     }
                 } else {
                     self.recordedMessage.text = ""
-                    let result = EMPTY
-                    let sentence = EMPTY
-                    
-                    print("Recordedmessage2:", self.recordedMessage.text)
+                    sentence = ""
+                    self.audioEngine.stop()
+                    print("Recordedmessage3:", self.recordedMessage.text)
                     print("Sentence2:", sentence)
-                    print("Results2:", result)
                     //   print("String is empty")
                     isFinal = false
                 }
-                
+                self.recordedMessage.text = ""
                 sentence = ""
                 print("Sentence3:", sentence)
                 if sentence.components(separatedBy: " ").filter({ !$0.isEmpty}).count == 0 {
                     self.audioEngine.prepare()
                     do {
                         try self.audioEngine.start()
+                        print("engine started")
                     } catch {
                         print(error)
                     }
