@@ -236,19 +236,15 @@ class ViewController: UIViewController {
             if let result = result {
                 var sentence = result.bestTranscription.formattedString
                 // Only pick the first word from the speech
-                
-                // string lastWord = result.BestTranscription.FormattedString.Split(' ')Last();
                 self.recordedMessage.text = sentence.components(separatedBy: " ").last
-                
                 isFinal = result.isFinal
-                
                 print("Recordedmessage:", self.recordedMessage.text)
                 print(result.bestTranscription.formattedString)
                 sentence = ""
                 print("Sentence:", sentence)
                 
                 if self.recordedMessage.text  == "Spring" || self.recordedMessage.text == "Jump"
-                    || self.recordedMessage.text == "Jill" || self.recordedMessage.text == "Jules" || self.recordedMessage.text == "Jim" {
+                    || self.recordedMessage.text == "Jill" || self.recordedMessage.text == "Jules" || self.recordedMessage.text == "Jim" || self.recordedMessage.text == "Junk" {
                     
                     let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
                     let url = URL(fileURLWithPath: path)
@@ -279,7 +275,7 @@ class ViewController: UIViewController {
                     self.audioEngine.prepare()
                     do {
                         try self.audioEngine.start()
-                        print("engine started")
+                        print("Audio engine started")
                     } catch {
                         print(error)
                     }
