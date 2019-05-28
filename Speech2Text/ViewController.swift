@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Spraak naar tekst
 //
-//  Created by Laurens Post, Jurjen Borkent, Niels Ettema en Thijs Govers
+//  Created by Laurens Post
 //
 
 import UIKit
@@ -19,9 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var recordedMessage: UITextView!
     
     var speechData: [Speech]!
-    var BackgroundSound: AVAudioPlayer?
     var JumpSound: AVAudioPlayer?
-    var RockSound: AVAudioPlayer?
     
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
@@ -54,103 +52,9 @@ class ViewController: UIViewController {
         // hide recording views
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
-        
-        let path = Bundle.main.path(forResource: "running.mp3", ofType:nil)!
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            self.BackgroundSound?.pause()
-            self.BackgroundSound = try AVAudioPlayer(contentsOf: url)
-            self.BackgroundSound?.play()
-            print("Startup sound working!")
-        } catch {
-            print("Failed to play startup sound")
-        }
-        
-        let rockFirstFallingDelay = 3.0 // Time To Delay
-        let whenFirstFall = DispatchTime.now() + rockFirstFallingDelay
-        
-        DispatchQueue.main.asyncAfter(deadline: whenFirstFall) {
-            let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
-            let url = URL(fileURLWithPath: path)
-            
-            do {
-                self.RockSound?.pause()
-                self.RockSound = try AVAudioPlayer(contentsOf: url)
-                self.RockSound?.play()
-                print("Rock sound working!")
-            } catch {
-                print("Failed to play rock sound")
-            }
-        }
-        
-        let rockSecondFallingDelay = 10.0 //Time To Delay
-        let whenSecondFall = DispatchTime.now() + rockSecondFallingDelay
-        
-        DispatchQueue.main.asyncAfter(deadline: whenSecondFall) {
-            let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
-            let url = URL(fileURLWithPath: path)
-            
-            do {
-                self.RockSound?.pause()
-                self.RockSound = try AVAudioPlayer(contentsOf: url)
-                self.RockSound?.play()
-                print("Rock sound working!")
-            } catch {
-                print("Failed to play rock sound")
-            }
-        }
-        
-        let rockThirdFallingDelay = 22.0 //Time To Delay
-        let whenThirdFall = DispatchTime.now() + rockThirdFallingDelay
-        
-        DispatchQueue.main.asyncAfter(deadline: whenThirdFall) {
-            let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
-            let url = URL(fileURLWithPath: path)
-            
-            do {
-                self.RockSound?.pause()
-                self.RockSound = try AVAudioPlayer(contentsOf: url)
-                self.RockSound?.play()
-                print("Rock sound working!")
-            } catch {
-                print("Failed to play rock sound")
-            }
-        }
-        
-        let rockFourthFallingDelay = 35.0 //Time To Delay
-        let whenFourthFall = DispatchTime.now() + rockFourthFallingDelay
-        
-        DispatchQueue.main.asyncAfter(deadline: whenFourthFall) {
-            let path = Bundle.main.path(forResource: "Rocks.wav", ofType:nil)!
-            let url = URL(fileURLWithPath: path)
-            
-            do {
-                self.RockSound?.pause()
-                self.RockSound = try AVAudioPlayer(contentsOf: url)
-                self.RockSound?.play()
-                print("Rock sound working!")
-            } catch {
-                print("Failed to play rock sound")
-            }
-        }
-        
-        let endTheGameDelay = 40.0 //Time To Delay
-        let whenToEndTheGame = DispatchTime.now() + endTheGameDelay
-        
-        DispatchQueue.main.asyncAfter(deadline: whenToEndTheGame) {
-            let path = Bundle.main.path(forResource: "you-win.mp3", ofType:nil)!
-            let url = URL(fileURLWithPath: path)
-            
-            do {
-                self.BackgroundSound?.pause()
-                self.BackgroundSound = try AVAudioPlayer(contentsOf: url)
-                self.BackgroundSound?.play()
-                print("End game sound working!")
-            } catch {
-                print("Failed to play end game sound")
-            }
-        }
+    
+        PlayRocksFalling()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -244,7 +148,9 @@ class ViewController: UIViewController {
                 print("Sentence:", sentence)
                 
                 if self.recordedMessage.text  == "Spring" || self.recordedMessage.text == "Jump"
-                    || self.recordedMessage.text == "Jill" || self.recordedMessage.text == "Jules" || self.recordedMessage.text == "Jim" || self.recordedMessage.text == "Junk" {
+                || self.recordedMessage.text == "Jill" || self.recordedMessage.text == "Jules"
+                    || self.recordedMessage.text == "Jim" || self.recordedMessage.text == "Junk"
+                || self.recordedMessage.text == "Ding" {
                     
                     let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
                     let url = URL(fileURLWithPath: path)
@@ -255,14 +161,12 @@ class ViewController: UIViewController {
                         self.recordedMessage.text = ""
                         sentence = ""
                         print("Recordedmessage2:", self.recordedMessage.text)
-                        self.audioEngine.stop()
                     } catch {
                         print("Failed to play the sound")
                     }
                 } else {
                     self.recordedMessage.text = ""
                     sentence = ""
-                    self.audioEngine.stop()
                     print("Recordedmessage3:", self.recordedMessage.text)
                     print("Sentence2:", sentence)
                     //   print("String is empty")
@@ -271,15 +175,6 @@ class ViewController: UIViewController {
                 self.recordedMessage.text = ""
                 sentence = ""
                 print("Sentence3:", sentence)
-                if sentence.components(separatedBy: " ").filter({ !$0.isEmpty}).count == 0 {
-                    self.audioEngine.prepare()
-                    do {
-                        try self.audioEngine.start()
-                        print("Audio engine started")
-                    } catch {
-                        print(error)
-                    }
-                }
             }
             
             if error != nil || isFinal {
