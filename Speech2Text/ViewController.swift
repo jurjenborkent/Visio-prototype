@@ -21,6 +21,9 @@ class ViewController: UIViewController {
     var speechData: [Speech]!
     var JumpSound: AVAudioPlayer?
     
+    var nothing : CheckWhichActions
+    var speech : CheckWhichActions
+    
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
             recognizer.delegate = self
@@ -53,6 +56,8 @@ class ViewController: UIViewController {
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
     
+        getGesture(speech)
+        getActions(nothing)
         PlayRocksFalling()
 
     }

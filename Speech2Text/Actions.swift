@@ -19,7 +19,7 @@ var nothing : CheckWhichActions = .nothing
 var jump : CheckWhichActions = .jump
 var rocksFalling : CheckWhichActions = .rocksFalling
 
-getActions (actions : CheckWhichActions) {
+func getActions (actions : CheckWhichActions) {
     switch actions {
     case .nothing:
         print("Do nothing")
