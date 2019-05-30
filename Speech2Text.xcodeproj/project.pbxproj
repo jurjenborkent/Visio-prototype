@@ -13,6 +13,8 @@
 		8973353C207A940600B8C1F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8973353B207A940600B8C1F9 /* Assets.xcassets */; };
 		8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */; };
 		C9553B41225F6750004B1999 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9553B40225F6750004B1999 /* CustomCell.swift */; };
+		D3AECB5222A02C020027AA32 /* Soundex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AECB5122A02C020027AA32 /* Soundex.swift */; };
+		D3AECB5422A02CB50027AA32 /* SoundexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AECB5322A02CB50027AA32 /* SoundexTest.swift */; };
 		F43AD0FB229D3E18000A066F /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AD0FA229D3E18000A066F /* Gesture.swift */; };
 		F43AD0FD229D5E41000A066F /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AD0FC229D5E40000A066F /* Speech.swift */; };
 		F43AD0FF229D60FB000A066F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AD0FE229D60FB000A066F /* Actions.swift */; };
@@ -34,16 +36,18 @@
 		8973353E207A940600B8C1F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89733540207A940600B8C1F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9553B40225F6750004B1999 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		D3AECB5122A02C020027AA32 /* Soundex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soundex.swift; sourceTree = "<group>"; };
+		D3AECB5322A02CB50027AA32 /* SoundexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundexTest.swift; sourceTree = "<group>"; };
 		F43AD0FA229D3E18000A066F /* Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
 		F43AD0FC229D5E40000A066F /* Speech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		F43AD0FE229D60FB000A066F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		F43AD100229D64C8000A066F /* RocksFalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocksFalling.swift; sourceTree = "<group>"; };
-		F4B35756228AB44600DCFDD5 /* running.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = running.mp3; path = ../../../../Downloads/running.mp3; sourceTree = "<group>"; };
-		F4B35758228AB55C00DCFDD5 /* you-win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "you-win.mp3"; path = "../../../../Downloads/you-win.mp3"; sourceTree = "<group>"; };
-		F4B80DAD22897377007747F2 /* Jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Jump.wav; path = ../../../../.Trash/Jump.wav; sourceTree = "<group>"; };
-		F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Mario-coin-sound.mp3"; path = "../../../../.Trash/Mario-coin-sound.mp3"; sourceTree = "<group>"; };
-		F4B80DB322897389007747F2 /* jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jump.mp3; path = ../../../../Downloads/jump.mp3; sourceTree = "<group>"; };
-		F4B80DBD2289A4EB007747F2 /* Rocks.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Rocks.wav; path = ../../../../Downloads/Rocks.wav; sourceTree = "<group>"; };
+		F4B35756228AB44600DCFDD5 /* running.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = running.mp3; path = Assets.xcassets/running.dataset/running.mp3; sourceTree = "<group>"; };
+		F4B35758228AB55C00DCFDD5 /* you-win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "you-win.mp3"; path = "Assets.xcassets/you-win.dataset/you-win.mp3"; sourceTree = "<group>"; };
+		F4B80DAD22897377007747F2 /* Jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Jump.wav; path = "Assets.xcassets/Jump-1.dataset/Jump.wav"; sourceTree = "<group>"; };
+		F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Mario-coin-sound.mp3"; path = "Assets.xcassets/Mario-coin-sound.dataset/Mario-coin-sound.mp3"; sourceTree = "<group>"; };
+		F4B80DB322897389007747F2 /* jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jump.mp3; path = Assets.xcassets/jump.dataset/jump.mp3; sourceTree = "<group>"; };
+		F4B80DBD2289A4EB007747F2 /* Rocks.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Rocks.wav; path = Assets.xcassets/Rocks.dataset/Rocks.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 				F43AD0FE229D60FB000A066F /* Actions.swift */,
 				F43AD0FC229D5E40000A066F /* Speech.swift */,
 				F43AD100229D64C8000A066F /* RocksFalling.swift */,
+				D3AECB5122A02C020027AA32 /* Soundex.swift */,
+				D3AECB5322A02CB50027AA32 /* SoundexTest.swift */,
 			);
 			path = Speech2Text;
 			sourceTree = "<group>";
@@ -176,10 +182,12 @@
 			files = (
 				F43AD0FB229D3E18000A066F /* Gesture.swift in Sources */,
 				89733537207A940500B8C1F9 /* ViewController.swift in Sources */,
+				D3AECB5422A02CB50027AA32 /* SoundexTest.swift in Sources */,
 				C9553B41225F6750004B1999 /* CustomCell.swift in Sources */,
 				F43AD0FF229D60FB000A066F /* Actions.swift in Sources */,
 				89733535207A940500B8C1F9 /* AppDelegate.swift in Sources */,
 				F43AD0FD229D5E41000A066F /* Speech.swift in Sources */,
+				D3AECB5222A02C020027AA32 /* Soundex.swift in Sources */,
 				F43AD101229D64C8000A066F /* RocksFalling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

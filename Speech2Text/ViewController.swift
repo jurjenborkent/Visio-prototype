@@ -21,8 +21,8 @@ class ViewController: UIViewController {
     var speechData: [Speech]!
     var JumpSound: AVAudioPlayer?
     
-    var nothing : CheckWhichActions
-    var speech : CheckWhichActions
+   // var nothing : CheckWhichActions
+    // var speech : CheckWhichActions
     
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
@@ -56,10 +56,9 @@ class ViewController: UIViewController {
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
     
-        getGesture(speech)
-        getActions(nothing)
+      //  getGesture(speech)
+       // getActions(nothing)
         PlayRocksFalling()
-
     }
     
     override func didReceiveMemoryWarning() {
@@ -141,22 +140,29 @@ class ViewController: UIViewController {
         recognitionRequest.shouldReportPartialResults = true
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
+            let c = Soundex()
+            
+            
             var isFinal = false
             if let result = result {
                 var sentence = result.bestTranscription.formattedString
                 // Only pick the first word from the speech
                 self.recordedMessage.text = sentence.components(separatedBy: " ").last
+                let SoundexedWord = c.soundex(self.recordedMessage.text)
                 isFinal = result.isFinal
-                print("Recordedmessage:", self.recordedMessage.text)
+                print("Recordedmessage:", SoundexedWord)
                 print(result.bestTranscription.formattedString)
                 sentence = ""
                 print("Sentence:", sentence)
-                
-                if self.recordedMessage.text  == "Spring" || self.recordedMessage.text == "Jump"
-                || self.recordedMessage.text == "Jill" || self.recordedMessage.text == "Jules"
-                    || self.recordedMessage.text == "Jim" || self.recordedMessage.text == "Junk"
+           
+                /*
+                if self.recordedMessage.text  == "Spring" || self.recordedMessage.text == "Jump"  || self.recordedMessage.text == "Juul"  || self.recordedMessage.text == "jump"  || self.recordedMessage.text == "Yo"  || self.recordedMessage.text == "John"
+                || self.recordedMessage.text == "Jill" || self.recordedMessage.text == "Jules"  || self.recordedMessage.text == "Joe"
+                     || self.recordedMessage.text == "Yoyo"
+                    || self.recordedMessage.text == "Jim" || self.recordedMessage.text == "Junk" || self.recordedMessage.text == "junk"
                 || self.recordedMessage.text == "Ding" {
-                    
+                 */
+                if SoundexedWord == "J500" || SoundexedWord == "S165" || SoundexedWord == "J510" || SoundexedWord == "J400" || SoundexedWord == "Y000" || SoundexedWord == "J000" || SoundexedWord == "Y000" || SoundexedWord == "J520" || SoundexedWord == "D520" || SoundexedWord == "S360" || SoundexedWord == "P616" || SoundexedWord == "P600" || SoundexedWord == "N000" || SoundexedWord == "J000" || SoundexedWord == "R520" || SoundexedWord == "P600" || SoundexedWord == "P660" || SoundexedWord == "R000" || SoundexedWord == "P662" || SoundexedWord == "R200" || SoundexedWord == "Z520" || SoundexedWord == "V526" || SoundexedWord == "F650" || SoundexedWord == "D652"  || SoundexedWord == "S365" || SoundexedWord == "K652" ||  SoundexedWord == "R526" {
                     let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
                     let url = URL(fileURLWithPath: path)
                     do {
