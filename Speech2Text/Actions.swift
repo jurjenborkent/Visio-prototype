@@ -27,8 +27,6 @@ func getActions (actions : CheckWhichActions) {
         print("Jump")
     case .rocksFalling:
         print("Rocks falling")
-    default:
-        print("Run")
     }
 }
 
