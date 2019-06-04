@@ -9,5 +9,5 @@
 import Foundation
 
 func startIntro() {
-    
+    print("Intro started")
 }

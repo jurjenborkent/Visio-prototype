@@ -15,18 +15,6 @@ var RockSound: AVAudioPlayer?
 
 func playRocksFalling() {
     
-    let path = Bundle.main.path(forResource: "running.mp3", ofType:nil)!
-    let url = URL(fileURLWithPath: path)
-    
-    do {
-        BackgroundSound?.pause()
-        BackgroundSound = try AVAudioPlayer(contentsOf: url)
-        BackgroundSound?.play()
-        print("Startup sound working!")
-    } catch {
-        print("Failed to play startup sound")
-    }
-    
     let rockFirstFallingDelay = 3.0 // Time To Delay
     let whenFirstFall = DispatchTime.now() + rockFirstFallingDelay
     

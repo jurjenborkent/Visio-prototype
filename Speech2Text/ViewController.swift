@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var recordingView: UIView!
     @IBOutlet weak var recordedMessage: UITextView!
     
-    var nothing : CheckWhichActions = .nothing
+    var run : CheckWhichActions = .run
     var speech : CheckWhichGestures = .speech
     var JumpSound: AVAudioPlayer?
     var recognitionTask: SFSpeechRecognitionTask?
@@ -54,9 +54,9 @@ class ViewController: UIViewController {
         self.fadedView.isHidden = true
     
         getGesture(gesture: speech)
-        getActions(actions: nothing)
+        getActions(actions: run)
         startIntro()
-        playRocksFalling()
+        getActions(actions: rocksFalling)
     }
     
     override func didReceiveMemoryWarning() {
