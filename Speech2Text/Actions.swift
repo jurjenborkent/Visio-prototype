@@ -24,6 +24,10 @@ var rocksFalling : CheckWhichActions = .rocksFalling
 func getActions (actions : CheckWhichActions) {
     switch actions {
     case .run:
+        let startRunningDelay = 60.0 // Time To Delay
+        let startRunning = DispatchTime.now() + startRunningDelay
+        
+        DispatchQueue.main.asyncAfter(deadline: startRunning) {
         let path = Bundle.main.path(forResource: "running.mp3", ofType:nil)!
         let url = URL(fileURLWithPath: path)
         
@@ -34,6 +38,7 @@ func getActions (actions : CheckWhichActions) {
             print("Start running sound!")
         } catch {
             print("Failed to play run sound")
+        }
         }
     case .jump:
         print("Jump")

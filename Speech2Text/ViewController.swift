@@ -25,11 +25,9 @@ class ViewController: UIViewController {
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
     // Setting
-    
     var timer = Timer()
     var seconds = 60
     var player = AVAudioPlayer()
-
     
     func jump(_ sender: Any) {
         print("jump!") // testing button pressed tag
@@ -42,9 +40,7 @@ class ViewController: UIViewController {
             player.play()
             
         } catch {
-            
             print ("error playing sound!")
-            
         }
     }
     
@@ -101,10 +97,10 @@ class ViewController: UIViewController {
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
     
-        getGesture(gesture: speech)
-        getActions(actions: run)
-        startIntro()
-        getActions(actions: rocksFalling)
+        getGesture(gesture: speech) // Check gesture
+        startIntro() // Start intro for the game
+        getActions(actions: run) // Start running action
+        getActions(actions: rocksFalling) // Start rocks falling
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,7 +130,7 @@ class ViewController: UIViewController {
             audioEngine.stop()
             recognitionRequest?.endAudio()
         } else {
-            startRecording()
+            startRecording() // Start recording when button is pushed
             self.recordingView.isHidden = false
             self.fadedView.alpha = 0.0
             self.fadedView.isHidden = false
@@ -158,7 +154,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
     func startRecording() {
         
         if let recognitionTask = recognitionTask {
@@ -186,22 +182,24 @@ class ViewController: UIViewController {
         recognitionRequest.shouldReportPartialResults = true
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
-            let c = Soundex()
+            // Get the Soundex function
+            let word = Soundex()
             var isFinal = false
             if let result = result {
                 var sentence = result.bestTranscription.formattedString
-                // Only pick the first word from the speech
+                // Only pick the last word from the speech
                 var recordedMessage = sentence.components(separatedBy: " ").last
-                let SoundexedWord = c.soundex(recordedMessage!)
+                let SoundexedWord = word.soundex(recordedMessage!)
                 isFinal = result.isFinal
                 print("Recordedmessage:", SoundexedWord)
                 print(result.bestTranscription.formattedString)
                 sentence = ""
                 print("Sentence:", sentence)
-                
-                if SoundexedWord == "J500" || SoundexedWord == "S165" || SoundexedWord == "J510" || SoundexedWord == "J400" || SoundexedWord == "Y000" || SoundexedWord == "J000" || SoundexedWord == "Y000" || SoundexedWord == "J520" || SoundexedWord == "D520" || SoundexedWord == "S360" || SoundexedWord == "P616" || SoundexedWord == "P600" || SoundexedWord == "N000" || SoundexedWord == "J000" || SoundexedWord == "R520" || SoundexedWord == "P600" || SoundexedWord == "P660" || SoundexedWord == "R000" || SoundexedWord == "P662" || SoundexedWord == "R200" || SoundexedWord == "Z520" || SoundexedWord == "V526" || SoundexedWord == "F650" || SoundexedWord == "D652"  || SoundexedWord == "S365" || SoundexedWord == "K652" ||  SoundexedWord == "R526" {
+                // Check if word is equal to the Soundex code
+                if SoundexedWord == "J500" || SoundexedWord == "S165" || SoundexedWord == "J510" || SoundexedWord == "J400" || SoundexedWord == "Y000" || SoundexedWord == "J000" || SoundexedWord == "Y000" || SoundexedWord == "J520" || SoundexedWord == "D520" || SoundexedWord == "S360" || SoundexedWord == "P616" || SoundexedWord == "P600" || SoundexedWord == "N000" || SoundexedWord == "J000" || SoundexedWord == "R520" || SoundexedWord == "P600" || SoundexedWord == "P660" || SoundexedWord == "R000" || SoundexedWord == "P662" || SoundexedWord == "R200" || SoundexedWord == "Z520" || SoundexedWord == "V526" || SoundexedWord == "F650" || SoundexedWord == "D652"  || SoundexedWord == "S365" || SoundexedWord == "K652" ||  SoundexedWord == "R526" || SoundexedWord == "H520"  {
                     let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
                     let url = URL(fileURLWithPath: path)
+                    // Play jump sound if word is equal to soundex code
                     do {
                         self.JumpSound = try AVAudioPlayer(contentsOf: url)
                         self.JumpSound?.play()
