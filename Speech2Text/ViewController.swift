@@ -24,6 +24,52 @@ class ViewController: UIViewController {
    // var nothing : CheckWhichActions
     // var speech : CheckWhichActions
     
+    // Setting
+    
+    var timer = Timer()
+    var seconds = 60
+    var player = AVAudioPlayer()
+
+    
+    func jump(_ sender: Any) {
+        print("jump!") // testing button pressed tag
+        
+        let path = Bundle.main.path(forResource: "jumpSound", ofType : "mp3")!
+        let url = URL(fileURLWithPath : path)
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player.play()
+            
+        } catch {
+            
+            print ("error playing sound!")
+            
+        }
+    }
+    
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+        
+    }
+    @objc func updateTimer() {
+        seconds -= 1     //This will decrement(count down)the seconds.
+        print(seconds)
+        
+        if seconds == 15 {
+            print("jump")
+        }
+        
+        if seconds == 50 {
+            print("jump!") // testing button presse
+        }
+        
+        if seconds == 45 {
+            print("jump!") // testing button presse
+        }
+    }
+    
+   
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
             recognizer.delegate = self
@@ -42,6 +88,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        runTimer()
+        updateTimer()
         // request auth
         self.requestAuth()
         
