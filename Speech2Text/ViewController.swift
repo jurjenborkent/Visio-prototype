@@ -86,6 +86,7 @@ class ViewController: UIViewController {
         // request auth
         self.requestAuth()
         
+        
         // init data
         //speechData = []
         
@@ -190,6 +191,15 @@ class ViewController: UIViewController {
                 // Only pick the last word from the speech
                 var recordedMessage = sentence.components(separatedBy: " ").last
                 let SoundexedWord = word.soundex(recordedMessage!)
+                
+                // Store the data
+                let valueToSave = SoundexedWord
+                UserDefaults.standard.set(valueToSave, forKey: "recordedMessage")
+                
+                if UserDefaults.standard.string(forKey: "recordedMessage") != nil {
+                    print("SavedValue:", valueToSave)
+                }
+                
                 isFinal = result.isFinal
                 print("Recordedmessage:", SoundexedWord)
                 print(result.bestTranscription.formattedString)
@@ -230,7 +240,7 @@ class ViewController: UIViewController {
                 self.recordButton.self.isEnabled = true
             }
         })
-        
+
         let recordingFormat = audioEngine.inputNode.outputFormat(forBus: 0)
         audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
             recognitionRequest.append(buffer)
