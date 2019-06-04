@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var recordedMessage: UITextView!
     
     var run : CheckWhichActions = .run
+    var failed : CheckWhichActions = .failed
     var speech : CheckWhichGestures = .speech
     var JumpSound: AVAudioPlayer?
     var recognitionTask: SFSpeechRecognitionTask?
@@ -206,10 +207,10 @@ class ViewController: UIViewController {
                 sentence = ""
                 print("Sentence:", sentence)
                 // Check if word is equal to the Soundex code
-                if SoundexedWord == "J500" || SoundexedWord == "S165" || SoundexedWord == "J510" || SoundexedWord == "J400" || SoundexedWord == "Y000" || SoundexedWord == "J000" || SoundexedWord == "Y000" || SoundexedWord == "J520" || SoundexedWord == "D520" || SoundexedWord == "S360" || SoundexedWord == "P616" || SoundexedWord == "P600" || SoundexedWord == "N000" || SoundexedWord == "J000" || SoundexedWord == "R520" || SoundexedWord == "P600" || SoundexedWord == "P660" || SoundexedWord == "R000" || SoundexedWord == "P662" || SoundexedWord == "R200" || SoundexedWord == "Z520" || SoundexedWord == "V526" || SoundexedWord == "F650" || SoundexedWord == "D652"  || SoundexedWord == "S365" || SoundexedWord == "K652" ||  SoundexedWord == "R526" || SoundexedWord == "H520"  {
+                if SoundexedWord == "J500" || SoundexedWord == "S165" || SoundexedWord == "J510" || SoundexedWord == "J400" || SoundexedWord == "Y000" || SoundexedWord == "J000" || SoundexedWord == "Y000" || SoundexedWord == "J520" || SoundexedWord == "D520" || SoundexedWord == "S360" || SoundexedWord == "P616" || SoundexedWord == "P600" || SoundexedWord == "N000" || SoundexedWord == "J000" || SoundexedWord == "R520" || SoundexedWord == "P600" || SoundexedWord == "P660" || SoundexedWord == "R000" || SoundexedWord == "P662" || SoundexedWord == "R200" || SoundexedWord == "Z520" || SoundexedWord == "V526" || SoundexedWord == "F650" || SoundexedWord == "D652"  || SoundexedWord == "S365" || SoundexedWord == "K652" ||  SoundexedWord == "R526" || SoundexedWord == "H520" {
                     let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
                     let url = URL(fileURLWithPath: path)
-                    // Play jump sound if word is equal to soundex code
+                    // Play jump sound if word is equal to Soundex code
                     do {
                         self.JumpSound = try AVAudioPlayer(contentsOf: url)
                         self.JumpSound?.play()
@@ -226,6 +227,7 @@ class ViewController: UIViewController {
                     print("Recordedmessage3:", recordedMessage!)
                     print("Sentence2:", sentence)
                     isFinal = false
+                    getActions(actions: self.failed) // Stop the game
                 }
                 recordedMessage = ""
                 sentence = ""

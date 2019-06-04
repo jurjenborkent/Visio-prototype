@@ -12,12 +12,14 @@ import Speech
 
 enum CheckWhichActions {
     case run
+    case failed
     case jump
     case rocksFalling
 }
 
 var backgroundSound: AVAudioPlayer?
 var run : CheckWhichActions = .run
+var failed : CheckWhichActions = .failed
 var jump : CheckWhichActions = .jump
 var rocksFalling : CheckWhichActions = .rocksFalling
 
@@ -39,6 +41,18 @@ func getActions (actions : CheckWhichActions) {
         } catch {
             print("Failed to play run sound")
         }
+        }
+    case .failed:
+        let path = Bundle.main.path(forResource: "game-over.wav", ofType:nil)!
+        let url = URL(fileURLWithPath: path)
+        
+        do {
+            backgroundSound?.pause()
+            backgroundSound = try AVAudioPlayer(contentsOf: url)
+            backgroundSound?.play()
+            print("Start game over sound!")
+        } catch {
+            print("Failed to play game over sound")
         }
     case .jump:
         print("Jump")
