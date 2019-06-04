@@ -169,7 +169,6 @@ class ViewController: UIViewController {
                     sentence = ""
                     print("Recordedmessage3:", recordedMessage!)
                     print("Sentence2:", sentence)
-                    //   print("String is empty")
                     isFinal = false
                 }
                 recordedMessage = ""

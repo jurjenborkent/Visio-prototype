@@ -13,7 +13,8 @@
 		8973353C207A940600B8C1F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8973353B207A940600B8C1F9 /* Assets.xcassets */; };
 		8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */; };
 		D3AECB5222A02C020027AA32 /* Soundex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AECB5122A02C020027AA32 /* Soundex.swift */; };
-		D3AECB5422A02CB50027AA32 /* SoundexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AECB5322A02CB50027AA32 /* SoundexTest.swift */; };
+		F4137DA222A66C04008709D4 /* Speech2TextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4137DA122A66C04008709D4 /* Speech2TextTests.swift */; };
+		F4137DA922A66C07008709D4 /* SoundexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AECB5322A02CB50027AA32 /* SoundexTest.swift */; };
 		F43AD0FB229D3E18000A066F /* Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AD0FA229D3E18000A066F /* Gesture.swift */; };
 		F43AD0FF229D60FB000A066F /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AD0FE229D60FB000A066F /* Actions.swift */; };
 		F43AD101229D64C8000A066F /* RocksFalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43AD100229D64C8000A066F /* RocksFalling.swift */; };
@@ -25,6 +26,16 @@
 		F4B80DBE2289A4EC007747F2 /* Rocks.wav in Resources */ = {isa = PBXBuildFile; fileRef = F4B80DBD2289A4EB007747F2 /* Rocks.wav */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F4137DA422A66C04008709D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89733529207A940500B8C1F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89733530207A940500B8C1F9;
+			remoteInfo = Speech2Text;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		89733531207A940500B8C1F9 /* Speech2Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speech2Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89733534207A940500B8C1F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +46,9 @@
 		89733540207A940600B8C1F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3AECB5122A02C020027AA32 /* Soundex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soundex.swift; sourceTree = "<group>"; };
 		D3AECB5322A02CB50027AA32 /* SoundexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundexTest.swift; sourceTree = "<group>"; };
+		F4137D9F22A66C04008709D4 /* Speech2TextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Speech2TextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4137DA122A66C04008709D4 /* Speech2TextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech2TextTests.swift; sourceTree = "<group>"; };
+		F4137DA322A66C04008709D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F43AD0FA229D3E18000A066F /* Gesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gesture.swift; sourceTree = "<group>"; };
 		F43AD0FE229D60FB000A066F /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		F43AD100229D64C8000A066F /* RocksFalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocksFalling.swift; sourceTree = "<group>"; };
@@ -54,6 +68,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F4137D9C22A66C04008709D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				89733533207A940500B8C1F9 /* Speech2Text */,
+				F4137DA022A66C04008709D4 /* Speech2TextTests */,
 				89733532207A940500B8C1F9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				89733531207A940500B8C1F9 /* Speech2Text.app */,
+				F4137D9F22A66C04008709D4 /* Speech2TextTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +120,15 @@
 			path = Speech2Text;
 			sourceTree = "<group>";
 		};
+		F4137DA022A66C04008709D4 /* Speech2TextTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4137DA122A66C04008709D4 /* Speech2TextTests.swift */,
+				F4137DA322A66C04008709D4 /* Info.plist */,
+			);
+			path = Speech2TextTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -117,18 +149,40 @@
 			productReference = 89733531207A940500B8C1F9 /* Speech2Text.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F4137D9E22A66C04008709D4 /* Speech2TextTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4137DA622A66C04008709D4 /* Build configuration list for PBXNativeTarget "Speech2TextTests" */;
+			buildPhases = (
+				F4137D9B22A66C04008709D4 /* Sources */,
+				F4137D9C22A66C04008709D4 /* Frameworks */,
+				F4137D9D22A66C04008709D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4137DA522A66C04008709D4 /* PBXTargetDependency */,
+			);
+			name = Speech2TextTests;
+			productName = Speech2TextTests;
+			productReference = F4137D9F22A66C04008709D4 /* Speech2TextTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		89733529207A940500B8C1F9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Devtechie;
 				TargetAttributes = {
 					89733530207A940500B8C1F9 = {
 						CreatedOnToolsVersion = 9.3;
+					};
+					F4137D9E22A66C04008709D4 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 89733530207A940500B8C1F9;
 					};
 				};
 			};
@@ -146,6 +200,7 @@
 			projectRoot = "";
 			targets = (
 				89733530207A940500B8C1F9 /* Speech2Text */,
+				F4137D9E22A66C04008709D4 /* Speech2TextTests */,
 			);
 		};
 /* End PBXProject section */
@@ -167,6 +222,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F4137D9D22A66C04008709D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -176,7 +238,6 @@
 			files = (
 				F43AD0FB229D3E18000A066F /* Gesture.swift in Sources */,
 				89733537207A940500B8C1F9 /* ViewController.swift in Sources */,
-				D3AECB5422A02CB50027AA32 /* SoundexTest.swift in Sources */,
 				F43AD0FF229D60FB000A066F /* Actions.swift in Sources */,
 				89733535207A940500B8C1F9 /* AppDelegate.swift in Sources */,
 				D3AECB5222A02C020027AA32 /* Soundex.swift in Sources */,
@@ -184,7 +245,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F4137D9B22A66C04008709D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4137DA922A66C07008709D4 /* SoundexTest.swift in Sources */,
+				F4137DA222A66C04008709D4 /* Speech2TextTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4137DA522A66C04008709D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89733530207A940500B8C1F9 /* Speech2Text */;
+			targetProxy = F4137DA422A66C04008709D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		89733538207A940500B8C1F9 /* Main.storyboard */ = {
@@ -356,6 +434,46 @@
 			};
 			name = Release;
 		};
+		F4137DA722A66C04008709D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Speech2TextTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Game.Speech2TextTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speech2Text.app/Speech2Text";
+			};
+			name = Debug;
+		};
+		F4137DA822A66C04008709D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Speech2TextTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Game.Speech2TextTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speech2Text.app/Speech2Text";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -373,6 +491,15 @@
 			buildConfigurations = (
 				89733544207A940600B8C1F9 /* Debug */,
 				89733545207A940600B8C1F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4137DA622A66C04008709D4 /* Build configuration list for PBXNativeTarget "Speech2TextTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4137DA722A66C04008709D4 /* Debug */,
+				F4137DA822A66C04008709D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
