@@ -18,11 +18,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var recordingView: UIView!
     @IBOutlet weak var recordedMessage: UITextView!
     
-    var speechData: [Speech]!
+    var run : CheckWhichActions = .run
+    var speech : CheckWhichGestures = .speech
     var JumpSound: AVAudioPlayer?
-    
-   // var nothing : CheckWhichActions
-    // var speech : CheckWhichActions
+    var recognitionTask: SFSpeechRecognitionTask?
+    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
     // Setting
     
@@ -82,10 +82,7 @@ class ViewController: UIViewController {
         let audioEngine = AVAudioEngine()
         return audioEngine
     }()
-    
-    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    var recognitionTask: SFSpeechRecognitionTask?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         runTimer()
@@ -94,7 +91,7 @@ class ViewController: UIViewController {
         self.requestAuth()
         
         // init data
-        speechData = []
+        //speechData = []
         
         // tableview delegations
         self.tableView.delegate = self
@@ -104,9 +101,10 @@ class ViewController: UIViewController {
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
     
-      //  getGesture(speech)
-       // getActions(nothing)
-        PlayRocksFalling()
+        getGesture(gesture: speech)
+        getActions(actions: run)
+        startIntro()
+        getActions(actions: rocksFalling)
     }
     
     override func didReceiveMemoryWarning() {
@@ -136,7 +134,7 @@ class ViewController: UIViewController {
             audioEngine.stop()
             recognitionRequest?.endAudio()
         } else {
-            self.startRecording()
+            startRecording()
             self.recordingView.isHidden = false
             self.fadedView.alpha = 0.0
             self.fadedView.isHidden = false
@@ -163,12 +161,12 @@ class ViewController: UIViewController {
     
     func startRecording() {
         
-        if let recognitionTask = self.recognitionTask {
+        if let recognitionTask = recognitionTask {
             recognitionTask.cancel()
             self.recognitionTask = nil
         }
         
-        self.recordedMessage.text = ""
+        recordedMessage.text = ""
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -181,7 +179,7 @@ class ViewController: UIViewController {
         
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         
-        guard let recognitionRequest = self.recognitionRequest else {
+        guard let recognitionRequest = recognitionRequest else {
             fatalError("Unable to create a speech audio buffer")
         }
         
@@ -189,27 +187,18 @@ class ViewController: UIViewController {
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             let c = Soundex()
-            
-            
             var isFinal = false
             if let result = result {
                 var sentence = result.bestTranscription.formattedString
                 // Only pick the first word from the speech
-                self.recordedMessage.text = sentence.components(separatedBy: " ").last
-                let SoundexedWord = c.soundex(self.recordedMessage.text)
+                var recordedMessage = sentence.components(separatedBy: " ").last
+                let SoundexedWord = c.soundex(recordedMessage!)
                 isFinal = result.isFinal
                 print("Recordedmessage:", SoundexedWord)
                 print(result.bestTranscription.formattedString)
                 sentence = ""
                 print("Sentence:", sentence)
-           
-                /*
-                if self.recordedMessage.text  == "Spring" || self.recordedMessage.text == "Jump"  || self.recordedMessage.text == "Juul"  || self.recordedMessage.text == "jump"  || self.recordedMessage.text == "Yo"  || self.recordedMessage.text == "John"
-                || self.recordedMessage.text == "Jill" || self.recordedMessage.text == "Jules"  || self.recordedMessage.text == "Joe"
-                     || self.recordedMessage.text == "Yoyo"
-                    || self.recordedMessage.text == "Jim" || self.recordedMessage.text == "Junk" || self.recordedMessage.text == "junk"
-                || self.recordedMessage.text == "Ding" {
-                 */
+                
                 if SoundexedWord == "J500" || SoundexedWord == "S165" || SoundexedWord == "J510" || SoundexedWord == "J400" || SoundexedWord == "Y000" || SoundexedWord == "J000" || SoundexedWord == "Y000" || SoundexedWord == "J520" || SoundexedWord == "D520" || SoundexedWord == "S360" || SoundexedWord == "P616" || SoundexedWord == "P600" || SoundexedWord == "N000" || SoundexedWord == "J000" || SoundexedWord == "R520" || SoundexedWord == "P600" || SoundexedWord == "P660" || SoundexedWord == "R000" || SoundexedWord == "P662" || SoundexedWord == "R200" || SoundexedWord == "Z520" || SoundexedWord == "V526" || SoundexedWord == "F650" || SoundexedWord == "D652"  || SoundexedWord == "S365" || SoundexedWord == "K652" ||  SoundexedWord == "R526" {
                     let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
                     let url = URL(fileURLWithPath: path)
@@ -217,21 +206,20 @@ class ViewController: UIViewController {
                         self.JumpSound = try AVAudioPlayer(contentsOf: url)
                         self.JumpSound?.play()
                         print("Sound working")
-                        self.recordedMessage.text = ""
+                        recordedMessage = ""
                         sentence = ""
-                        print("Recordedmessage2:", self.recordedMessage.text)
+                        print("Recordedmessage2:", recordedMessage!)
                     } catch {
                         print("Failed to play the sound")
                     }
                 } else {
-                    self.recordedMessage.text = ""
+                    recordedMessage = ""
                     sentence = ""
-                    print("Recordedmessage3:", self.recordedMessage.text)
+                    print("Recordedmessage3:", recordedMessage!)
                     print("Sentence2:", sentence)
-                    //   print("String is empty")
                     isFinal = false
                 }
-                self.recordedMessage.text = ""
+                recordedMessage = ""
                 sentence = ""
                 print("Sentence3:", sentence)
             }
@@ -241,13 +229,13 @@ class ViewController: UIViewController {
                 self.audioEngine.inputNode.removeTap(onBus: 0)
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
-                self.recordButton.isEnabled = true
+                self.recordButton.self.isEnabled = true
             }
         })
         
         let recordingFormat = audioEngine.inputNode.outputFormat(forBus: 0)
         audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
-            self.recognitionRequest?.append(buffer)
+            recognitionRequest.append(buffer)
         }
         
         audioEngine.prepare()
@@ -263,11 +251,11 @@ extension ViewController: SFSpeechRecognizerDelegate {}
 extension ViewController: UITableViewDelegate {}
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return speechData.count
+        return 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomCell
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        return cell!
     }
 }
 

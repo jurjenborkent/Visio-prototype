@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Speech
 
 enum CheckWhichGestures {
     case speech
