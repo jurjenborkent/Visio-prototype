@@ -55,7 +55,8 @@ class ViewController: UIViewController {
     
         getGesture(gesture: speech)
         getActions(actions: nothing)
-        PlayRocksFalling()
+        startIntro()
+        playRocksFalling()
     }
     
     override func didReceiveMemoryWarning() {
@@ -138,7 +139,6 @@ class ViewController: UIViewController {
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             let c = Soundex()
-            
             var isFinal = false
             if let result = result {
                 var sentence = result.bestTranscription.formattedString

@@ -13,7 +13,7 @@ import Speech
 var BackgroundSound: AVAudioPlayer?
 var RockSound: AVAudioPlayer?
 
-func PlayRocksFalling() {
+func playRocksFalling() {
     
     let path = Bundle.main.path(forResource: "running.mp3", ofType:nil)!
     let url = URL(fileURLWithPath: path)
