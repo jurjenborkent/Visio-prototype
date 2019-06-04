@@ -180,9 +180,9 @@ class ViewController: UIViewController {
             if error != nil || isFinal {
                 self.audioEngine.stop()
                 self.audioEngine.inputNode.removeTap(onBus: 0)
-                //  recognitionRequest = nil
+                self.recognitionRequest = nil
                 self.recognitionTask = nil
-                // recordButton.self.isEnabled = true
+                self.recordButton.self.isEnabled = true
             }
         })
         
