@@ -101,6 +101,7 @@ class ViewController: UIViewController {
     
         getGesture(gesture: speech) // Check gesture
         startIntro() // Start intro for the game
+        Record().recordIntro() // Recording for the intro
         getActions(actions: run) // Start running action
         getActions(actions: rocksFalling) // Start rocks falling
     }
@@ -164,7 +165,7 @@ class ViewController: UIViewController {
             self.recognitionTask = nil
         }
         
-        recordedMessage.text = ""
+        // recordedMessage.text = ""
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
