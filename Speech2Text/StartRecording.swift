@@ -44,6 +44,7 @@ func startRecordingIntro() {
         
         // Get the Soundex function
         let word = Soundex()
+        // isFinal to false
         var isFinal = false
         if let result = result {
             var sentence = result.bestTranscription.formattedString
@@ -56,14 +57,12 @@ func startRecordingIntro() {
             UserDefaults.standard.set(valueToSave, forKey: "recordedMessage")
             
             isFinal = result.isFinal
+            print(result.isFinal)
             print("Recordedmessage:", SoundexedWord)
             print(result.bestTranscription.formattedString)
             sentence = ""
-            print("Sentence:", sentence)
-
             recordedMessage = ""
             sentence = ""
-            print("Sentence3:", sentence)
         }
         
         if error != nil || isFinal {

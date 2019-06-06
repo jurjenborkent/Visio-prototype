@@ -15,7 +15,7 @@ var RockSound: AVAudioPlayer?
 
 func playRocksFalling() {
     
-    let rockFirstFallingDelay = 63.0 // Time To Delay
+    let rockFirstFallingDelay = 6.0 // Time To Delay
     let whenFirstFall = DispatchTime.now() + rockFirstFallingDelay
     
     DispatchQueue.main.asyncAfter(deadline: whenFirstFall) {
@@ -32,7 +32,7 @@ func playRocksFalling() {
         }
     }
     
-    let rockSecondFallingDelay = 70.0 //Time To Delay
+    let rockSecondFallingDelay = 15.0 //Time To Delay
     let whenSecondFall = DispatchTime.now() + rockSecondFallingDelay
     
     DispatchQueue.main.asyncAfter(deadline: whenSecondFall) {
@@ -49,7 +49,7 @@ func playRocksFalling() {
         }
     }
     
-    let rockThirdFallingDelay = 82.0 //Time To Delay
+    let rockThirdFallingDelay = 26.0 //Time To Delay
     let whenThirdFall = DispatchTime.now() + rockThirdFallingDelay
     
     DispatchQueue.main.asyncAfter(deadline: whenThirdFall) {
@@ -66,7 +66,7 @@ func playRocksFalling() {
         }
     }
     
-    let rockFourthFallingDelay = 95.0 //Time To Delay
+    let rockFourthFallingDelay = 32.0 //Time To Delay
     let whenFourthFall = DispatchTime.now() + rockFourthFallingDelay
     
     DispatchQueue.main.asyncAfter(deadline: whenFourthFall) {
@@ -83,7 +83,7 @@ func playRocksFalling() {
         }
     }
     
-    let endTheGameDelay = 100.0 //Time To Delay
+    let endTheGameDelay = 46.0 //Time To Delay
     let whenToEndTheGame = DispatchTime.now() + endTheGameDelay
     
     DispatchQueue.main.asyncAfter(deadline: whenToEndTheGame) {

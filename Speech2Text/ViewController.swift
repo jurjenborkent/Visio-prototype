@@ -87,10 +87,6 @@ class ViewController: UIViewController {
         // request auth
         self.requestAuth()
         
-        
-        // init data
-        //speechData = []
-        
         // tableview delegations
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -200,19 +196,23 @@ class ViewController: UIViewController {
                 sentence = ""
                 print("Sentence:", sentence)
                 
-                let valueToSave = ""
-                if UserDefaults.standard.string(forKey: "recordedMessage") != nil {
-                    print("SavedValue:", valueToSave)
-                }
+                // Store the data
+                let valueToSave = SoundexWord
+                UserDefaults.standard.set(valueToSave, forKey: "recordedMessage")
                 
                 // Check if word is equal to the Soundex code
-                let elements = ["J500","S165", "J510", "J400", "Y000", "J000", "Y000", "J520", "D520", "S360", "P616", "P600", "N000", "J000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520"]
+                var elements = ["J500","S165", "J510", "J400", "Y000", "J000", "J520", "D520", "S360", "P616", "P600", "N000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520", "S155", "T520", "J516", "S600", "S160", "S162"]
                 
                 var currentIndex = 0
                 for element in elements
                 {
                     if element == SoundexWord {
                         print("Found \(element) for index \(currentIndex)")
+                        
+                        if UserDefaults.standard.string(forKey: "recordedMessage") != nil {
+                            elements.append(valueToSave)
+                            print(elements)
+                        }
                         
                         let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
                         let url = URL(fileURLWithPath: path)
@@ -223,15 +223,12 @@ class ViewController: UIViewController {
                             print("Sound working")
                             recordedMessage = ""
                             sentence = ""
-                            print("Recordedmessage2:", recordedMessage!)
                         } catch {
                             print("Failed to play the sound")
                         }
                     } else {
                         recordedMessage = ""
                         sentence = ""
-                        print("Recordedmessage3:", recordedMessage!)
-                        print("Sentence2:", sentence)
                         isFinal = false
                        // getActions(actions: self.failed) // Stop the game
                     }

@@ -26,7 +26,7 @@ var rocksFalling : CheckWhichActions = .rocksFalling
 func getActions (actions : CheckWhichActions) {
     switch actions {
     case .run:
-        let startRunningDelay = 60.0 // Time To Delay
+        let startRunningDelay = 1.0 // Time To Delay
         let startRunning = DispatchTime.now() + startRunningDelay
         
         DispatchQueue.main.asyncAfter(deadline: startRunning) {
