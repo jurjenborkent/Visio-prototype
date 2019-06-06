@@ -100,8 +100,8 @@ class ViewController: UIViewController {
         self.fadedView.isHidden = true
     
         getGesture(gesture: speech) // Check gesture
-        startIntro() // Start intro for the game
-        recording().recordIntro() // Recording for the intro
+       // startIntro() // Start intro for the game
+      //  recording().recordIntro() // Recording for the intro
         getActions(actions: run) // Start running action
         getActions(actions: rocksFalling) // Start rocks falling
     }
@@ -192,10 +192,10 @@ class ViewController: UIViewController {
                 var sentence = result.bestTranscription.formattedString
                 // Only pick the last word from the speech
                 var recordedMessage = sentence.components(separatedBy: " ").last
-                let SoundexedWord = word.soundex(recordedMessage!)
+                let SoundexWord = word.soundex(recordedMessage!)
                 
                 isFinal = result.isFinal
-                print("Recordedmessage:", SoundexedWord)
+                print("Recordedmessage:", SoundexWord)
                 print(result.bestTranscription.formattedString)
                 sentence = ""
                 print("Sentence:", sentence)
@@ -205,33 +205,37 @@ class ViewController: UIViewController {
                     print("SavedValue:", valueToSave)
                 }
                 
-                let elements = ["J500","S165", "J510", "J400", "Y000", "J000", "Y000", "J520", "D520"]
-                if elements.contains(SoundexedWord) {
-                    print("yes")
-                }
-                
                 // Check if word is equal to the Soundex code
-                if SoundexedWord == "J500" || SoundexedWord == "S165" || SoundexedWord == "J510" || SoundexedWord == "J400" || SoundexedWord == "Y000" || SoundexedWord == "J000" || SoundexedWord == "Y000" || SoundexedWord == "J520" || SoundexedWord == "D520" || SoundexedWord == "S360" || SoundexedWord == "P616" || SoundexedWord == "P600" || SoundexedWord == "N000" || SoundexedWord == "J000" || SoundexedWord == "R520" || SoundexedWord == "P600" || SoundexedWord == "P660" || SoundexedWord == "R000" || SoundexedWord == "P662" || SoundexedWord == "R200" || SoundexedWord == "Z520" || SoundexedWord == "V526" || SoundexedWord == "F650" || SoundexedWord == "D652"  || SoundexedWord == "S365" || SoundexedWord == "K652" ||  SoundexedWord == "R526" || SoundexedWord == "H520" {
-                    let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
-                    let url = URL(fileURLWithPath: path)
-                    // Play jump sound if word is equal to Soundex code
-                    do {
-                        self.JumpSound = try AVAudioPlayer(contentsOf: url)
-                        self.JumpSound?.play()
-                        print("Sound working")
+                let elements = ["J500","S165", "J510", "J400", "Y000", "J000", "Y000", "J520", "D520", "S360", "P616", "P600", "N000", "J000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520"]
+                
+                var currentIndex = 0
+                for element in elements
+                {
+                    if element == SoundexWord {
+                        print("Found \(element) for index \(currentIndex)")
+                        
+                        let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
+                        let url = URL(fileURLWithPath: path)
+                        // Play jump sound if word is equal to Soundex code
+                        do {
+                            self.JumpSound = try AVAudioPlayer(contentsOf: url)
+                            self.JumpSound?.play()
+                            print("Sound working")
+                            recordedMessage = ""
+                            sentence = ""
+                            print("Recordedmessage2:", recordedMessage!)
+                        } catch {
+                            print("Failed to play the sound")
+                        }
+                    } else {
                         recordedMessage = ""
                         sentence = ""
-                        print("Recordedmessage2:", recordedMessage!)
-                    } catch {
-                        print("Failed to play the sound")
+                        print("Recordedmessage3:", recordedMessage!)
+                        print("Sentence2:", sentence)
+                        isFinal = false
+                       // getActions(actions: self.failed) // Stop the game
                     }
-                } else {
-                    recordedMessage = ""
-                    sentence = ""
-                    print("Recordedmessage3:", recordedMessage!)
-                    print("Sentence2:", sentence)
-                    isFinal = false
-                    getActions(actions: self.failed) // Stop the game
+                        currentIndex += 1
                 }
                 recordedMessage = ""
                 sentence = ""
