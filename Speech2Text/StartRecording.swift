@@ -55,10 +55,6 @@ func startRecordingIntro() {
             let valueToSave = SoundexedWord
             UserDefaults.standard.set(valueToSave, forKey: "recordedMessage")
             
-            if UserDefaults.standard.string(forKey: "recordedMessage") != nil {
-                print("SavedValue:", valueToSave)
-            }
-            
             isFinal = result.isFinal
             print("Recordedmessage:", SoundexedWord)
             print(result.bestTranscription.formattedString)
