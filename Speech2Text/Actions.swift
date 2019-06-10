@@ -57,7 +57,7 @@ func getActions (actions : CheckWhichActions) {
     case .jump:
         print("Jump")
     case .rocksFalling:
-        playRocksFalling(delay:6.0)
+        playRocksFalling()
     }
 }
 

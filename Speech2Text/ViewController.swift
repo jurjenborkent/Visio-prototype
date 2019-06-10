@@ -50,22 +50,15 @@ class ViewController: UIViewController {
         
     }
     @objc func updateTimer() {
+        // Execute every 6 seconds
+        if (seconds < 59 && seconds % 6 == 0) {
+            // Let a rock fall down
+            getActions(actions: rocksFalling)
+        }
         seconds -= 1     //This will decrement(count down)the seconds.
         print(seconds)
-        
-        if seconds == 15 {
-            print("jump")
-        }
-        
-        if seconds == 50 {
-            print("jump!") // testing button presse
-        }
-        
-        if seconds == 45 {
-            print("jump!") // testing button presse
-        }
     }
-    
+    	
    
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
@@ -94,7 +87,12 @@ class ViewController: UIViewController {
         // hide recording views
         self.recordingView.isHidden = true
         self.fadedView.isHidden = true
-    
+        startRecording()
+        getActions(actions: run)
+//        while (true) {
+//            getActions(aßctions: rocksFalling)
+//        }
+        
         getGesture(gesture: speech) // Check gesture
        // startIntro() // Start intro for the game
       //  recording().recordIntro() // Recording for the intro
