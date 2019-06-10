@@ -112,6 +112,10 @@ class ViewController: UIViewController {
         
         self.recordedMessage.text = ""
         
+        if self.recordedMessage.text == "Spring" {
+            print("gesprongen")
+        }
+        
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSessionCategoryRecord)
