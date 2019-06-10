@@ -23,9 +23,7 @@ func playSOUND(sound: AVAudioPlayer?) {
 }
 
 func playRocksFalling() {
-    let deadlineSec = DispatchTime.now()
-    
-    DispatchQueue.main.asyncAfter(deadline: deadlineSec) {
+    DispatchQueue.main.async() {
         playSOUND(sound:rockSound)
     }
 }

@@ -51,7 +51,8 @@ class ViewController: UIViewController {
     }
     @objc func updateTimer() {
         // Execute every 6 seconds
-        if (seconds < 59 && seconds % 6 == 0) {
+        if (seconds < 58 && seconds % 6 == 0) {
+            print("steen of RAPPER STONE")
             // Let a rock fall down
             getActions(actions: rocksFalling)
         }
@@ -97,7 +98,7 @@ class ViewController: UIViewController {
        // startIntro() // Start intro for the game
       //  recording().recordIntro() // Recording for the intro
         getActions(actions: run) // Start running action
-        getActions(actions: rocksFalling) // Start rocks falling
+       
     }
     
     override func didReceiveMemoryWarning() {
