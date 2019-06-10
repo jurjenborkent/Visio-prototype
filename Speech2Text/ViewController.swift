@@ -42,7 +42,7 @@ class ViewController: UIViewController {
             
         } catch {
             print ("error playing sound!")
-        }
+        }	
     }
     
     func runTimer() {

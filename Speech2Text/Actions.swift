@@ -43,7 +43,7 @@ func getActions (actions : CheckWhichActions) {
         }
         }
     case .failed:
-        let path = Bundle.main.path(forResource: "game-over.wav", ofType:nil)!
+        let path = Bundle.main.path(forResource: "you-win.mp3", ofType:nil)!
         let url = URL(fileURLWithPath: path)
         
         do {
@@ -57,7 +57,7 @@ func getActions (actions : CheckWhichActions) {
     case .jump:
         print("Jump")
     case .rocksFalling:
-        playRocksFalling()
+        playRocksFalling(delay:6.0)
     }
 }
 
