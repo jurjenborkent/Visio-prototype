@@ -56,6 +56,7 @@ class ViewController: UIViewController {
             // Let a rock fall down
             getActions(actions: rocksFalling)
         }
+        
         seconds -= 1     //This will decrement(count down)the seconds.
         print(seconds)
     }
