@@ -3,10 +3,11 @@ import UIKit
 import Speech
 
 let rockSound = getSound(soundName: "Rocks.wav")
+let runSound = getSound(soundName: "Jump.mp3")
 
 func getSound(soundName:String) -> AVAudioPlayer? {
-    let rockPath = Bundle.main.path(forResource: soundName, ofType:nil)!
-    let url = URL(fileURLWithPath: rockPath)
+    let Path = Bundle.main.path(forResource: soundName, ofType:nil)!
+    let url = URL(fileURLWithPath: Path)
     var sound: AVAudioPlayer?
     do {
         sound = try AVAudioPlayer(contentsOf: url)
@@ -25,5 +26,11 @@ func playSOUND(sound: AVAudioPlayer?) {
 func playRocksFalling() {
     DispatchQueue.main.async() {
         playSOUND(sound:rockSound)
+    }
+}
+
+func playRunningSound() {
+    DispatchQueue.main.async() {
+        playSOUND(sound:runSound)
     }
 }
