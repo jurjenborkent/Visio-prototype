@@ -213,19 +213,10 @@ class ViewController: UIViewController {
                             elements.append(valueToSave)
                             print(elements)
                         }
-                        
-                        let path = Bundle.main.path(forResource: "jump.mp3", ofType:nil)!
-                        let url = URL(fileURLWithPath: path)
                         // Play jump sound if word is equal to Soundex code
-                        do {
-                            self.JumpSound = try AVAudioPlayer(contentsOf: url)
-                            self.JumpSound?.play()
-                            print("Sound working")
-                            recordedMessage = ""
-                            sentence = ""
-                        } catch {
-                            print("Failed to play the sound")
-                        }
+                        playRunningSound()
+                        recordedMessage = ""
+                        sentence = ""
                     } else {
                         recordedMessage = ""
                         sentence = ""

@@ -3,11 +3,11 @@ import UIKit
 import Speech
 
 let rockSound = getSound(soundName: "Rocks.wav")
-let runSound = getSound(soundName: "Jump.mp3")
+let runSound = getSound(soundName: "jump.mp3")
 
 func getSound(soundName:String) -> AVAudioPlayer? {
-    let Path = Bundle.main.path(forResource: soundName, ofType:nil)!
-    let url = URL(fileURLWithPath: Path)
+    let path = Bundle.main.path(forResource: soundName, ofType:nil)!
+    let url = URL(fileURLWithPath: path)
     var sound: AVAudioPlayer?
     do {
         sound = try AVAudioPlayer(contentsOf: url)
