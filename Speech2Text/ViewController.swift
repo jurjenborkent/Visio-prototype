@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     @objc func updateTimer() {
         // Execute every 6 seconds
         if (seconds < 58 && seconds % 6 == 0) {
-            print("steen of RAPPER STONE")
+            print("Stones dropping!")
             // Let a rock fall down
             getActions(actions: rocksFalling)
         }
@@ -80,15 +80,12 @@ class ViewController: UIViewController {
         runTimer()
         updateTimer()
         // request auth
-        self.requestAuth()
+//        self.requestAuth()
         
         // tableview delegations
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
         
         // hide recording views
-        self.recordingView.isHidden = true
-        self.fadedView.isHidden = true
+
         startRecording()
         getActions(actions: run)
 //        while (true) {
@@ -111,18 +108,18 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    func requestAuth() {
-        SFSpeechRecognizer.requestAuthorization { (authStatus) in
-            DispatchQueue.main.async {
-                switch authStatus {
-                case .authorized:
-                    self.recordButton.isEnabled = true
-                case .denied, .notDetermined, .restricted:
-                    self.recordButton.isEnabled = false
-                }
-            }
-        }
-    }
+//    func requestAuth() {
+//        SFSpeechRecognizer.requestAuthorization { (authStatus) in
+//            DispatchQueue.main.async {
+//                switch authStatus {
+//                case .authorized:
+//                    self.recordButton.isEnabled = true
+//                case .denied, .notDetermined, .restricted:
+//                    self.recordButton.isEnabled = false
+//                }
+//            }
+//        }
+//    }
     
     @IBAction func didTapRecordButton(sender: UIButton) {
         if audioEngine.isRunning {
