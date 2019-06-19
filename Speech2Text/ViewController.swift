@@ -216,6 +216,7 @@ class ViewController: UIViewController {
                         }
                         // Play jump sound if word is equal to Soundex code
                         jumpCommand()
+                        jumpFailed()
                         recordedMessage = ""
                         sentence = ""
                     } else {
@@ -224,6 +225,8 @@ class ViewController: UIViewController {
                         isFinal = false
                        // getActions(actions: self.failed) // Stop the game
                     }
+                    
+                    
                         currentIndex += 1
                 }
                 recordedMessage = ""

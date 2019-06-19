@@ -4,6 +4,7 @@ import Speech
 
 let rockSound = getSound(soundName: "Rocks.wav")
 let jumpSound = getSound(soundName: "jump.mp3")
+let jumpFailedSound = getSound(soundName: "you-win.mp3")
 
 func getSound(soundName:String) -> AVAudioPlayer? {
     let path = Bundle.main.path(forResource: soundName, ofType:nil)!
@@ -18,22 +19,27 @@ func getSound(soundName:String) -> AVAudioPlayer? {
 }
 
 // GENERIC FUNCTION TO PLAY ANY SOUND
-func playSOUND(sound: AVAudioPlayer?) {
+func playSound(sound: AVAudioPlayer?) {
     sound?.pause()
     sound?.play()
 }
 
 func playRocksFalling() {
     DispatchQueue.main.async() {
-        playSOUND(sound:rockSound)
+        playSound(sound:rockSound)
     }
 }
 
 func jumpCommand() {
     DispatchQueue.main.async() {
-        playSOUND(sound:jumpSound)
+        playSound(sound:jumpSound)
     }
 
+func jumpFailed() {
+    DispatchQueue.main.async() {
+        playSound(sound:jumpFailedSound)
+        }
+    }
  
     
 }
