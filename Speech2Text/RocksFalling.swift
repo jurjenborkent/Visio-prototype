@@ -3,7 +3,7 @@ import UIKit
 import Speech
 
 let rockSound = getSound(soundName: "Rocks.wav")
-let runSound = getSound(soundName: "jump.mp3")
+let jumpSound = getSound(soundName: "jump.mp3")
 
 func getSound(soundName:String) -> AVAudioPlayer? {
     let path = Bundle.main.path(forResource: soundName, ofType:nil)!
@@ -29,8 +29,11 @@ func playRocksFalling() {
     }
 }
 
-func playRunningSound() {
+func jumpCommand() {
     DispatchQueue.main.async() {
-        playSOUND(sound:runSound)
+        playSOUND(sound:jumpSound)
     }
+
+ 
+    
 }

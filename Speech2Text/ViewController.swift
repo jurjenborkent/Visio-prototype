@@ -85,12 +85,12 @@ class ViewController: UIViewController {
         updateTimer()
         // request auth
 //        self.requestAuth()
-        
+        startRecording()
         // tableview delegations
         
         // hide recording views
 
-        startRecording()
+        
         getActions(actions: run)
 //        while (true) {
 //            getActions(aßctions: rocksFalling)
@@ -215,7 +215,7 @@ class ViewController: UIViewController {
                             print(elements)
                         }
                         // Play jump sound if word is equal to Soundex code
-                        playRunningSound()
+                        jumpCommand()
                         recordedMessage = ""
                         sentence = ""
                     } else {
