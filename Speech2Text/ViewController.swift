@@ -31,13 +31,18 @@ class ViewController: UIViewController {
     var jumpSucces = false
    
     // counter variables
-    var lives = 2
+    var lives = 3
+    
     var coinsCollected = 0
+    var rockDropped = 0
+    var rockDropInterval = 10
     
     // Setting
     var timer = Timer()
-    var seconds = 60
+    var seconds = 0
     var player = AVAudioPlayer()
+    
+    // modulo googlon bereken restan
     
     // function that was uses on tab command.
     func jump(_ sender: Any) {
@@ -63,34 +68,38 @@ class ViewController: UIViewController {
     // function for updating the timer, decreasing the seconds en doing stuff within it. GAME LOOP
     }
     @objc func updateTimer() {
-        seconds -= 1     //This will decrement(count down)the seconds.
+        seconds += 1     //This will increment (count up) the seconds.
         print(seconds)
         // Execute every 10 seconds
-        if (seconds < 55 && seconds % 10 == 0) {
+        if (seconds > 5 && ((rockDropped == 0) || (rockDropped + self.rockDropInterval) == seconds)) {
             print("Stones dropping!")
             // Let a rock fall down
             getActions(actions: rocksFalling)
+            self.rockDropped = seconds
             isListining = true
             listiningStart = seconds
             jumpSucces = false
         }
         
-        if (isListining == true && (listiningStart - 4) == seconds){
+        if (isListining == true && (listiningStart + 4) == seconds) {
             isListining = false
             if (!jumpSucces) {
                 jumpFailed()
                 lives -= 1
-                print(lives)
+                print("levens: ", lives)
             } else {
                 coinsCollected += 1
             }
-         }
-        if(lives == 0) {
+        }
+        
+        if (lives == 0) {
             print("STOPPEN")
         }
         
-        
-        
+//        if (self.coinsCollected > 1) {
+//           self.rockDropInterval -= 3
+//        }
+       
     }
     	
    
@@ -183,6 +192,9 @@ class ViewController: UIViewController {
         }
     }
 
+
+    
+    
     func startRecording() {
     
         
@@ -215,7 +227,7 @@ class ViewController: UIViewController {
             
             if (self.isListining) {
                 
-                print("aan het luisteren")
+//                print("aan het luisteren")
             
                 // Get the Soundex function
                 let word = Soundex()
@@ -227,7 +239,6 @@ class ViewController: UIViewController {
                     let SoundexWord = word.soundex(recordedMessage!)
                     
                     isFinal = result.isFinal
-                    print("Recordedmessage:", SoundexWord)
                     print(result.bestTranscription.formattedString)
                     sentence = ""
                     print("Sentence:", sentence)
@@ -237,18 +248,18 @@ class ViewController: UIViewController {
                     UserDefaults.standard.set(valueToSave, forKey: "recordedMessage")
                     
                     // Check if word is equal to the Soundex code
-                    var elements = ["J500","S165", "J510", "J400", "Y000", "J000", "J520", "D520", "S360", "P616", "P600", "N000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520", "S155", "T520", "J516", "S600", "S160", "S162"]
+                    let elements = ["J500","S165", "J510", "J400", "Y000", "J000", "J520", "D520", "S360", "P616", "P600", "N000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520", "S155", "T520", "J516", "S600", "S160", "S162"]
                     
                     var currentIndex = 0
                     for element in elements
                     {
                         if element == SoundexWord {
-                            print("Found \(element) for index \(currentIndex)")
+//                            print("Found \(element) for index \(currentIndex)")
                             
-                            if UserDefaults.standard.string(forKey: "recordedMessage") != nil {
-                                elements.append(valueToSave)
-                                print(elements)
-                            }
+//                            if UserDefaults.standard.string(forKey: "recordedMessage") != nil {
+//                                elements.append(valueToSave)
+//                                print(elements)
+//                            }
                             // Play jump sound if word is equal to Soundex code
                             
                             jumpCommand()
@@ -264,7 +275,7 @@ class ViewController: UIViewController {
                     sentence = ""
                     print("Sentence3:", sentence)
                 }
-            
+            		
                 
                 if error != nil || isFinal {
                     self.audioEngine.stop()
