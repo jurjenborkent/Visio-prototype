@@ -25,9 +25,15 @@ class ViewController: UIViewController {
     var recognitionTask: SFSpeechRecognitionTask?
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
+    
     var isListining = false
     var listiningStart = 0
     var jumpSucces = false
+   
+    // counter variables
+    var lives = 2
+    var coinsCollected = 0
+    
     // Setting
     var timer = Timer()
     var seconds = 60
@@ -54,9 +60,11 @@ class ViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
         
    
-    // function for updating the timer, decreasing the seconds en doing stuff within it.
+    // function for updating the timer, decreasing the seconds en doing stuff within it. GAME LOOP
     }
     @objc func updateTimer() {
+        seconds -= 1     //This will decrement(count down)the seconds.
+        print(seconds)
         // Execute every 10 seconds
         if (seconds < 55 && seconds % 10 == 0) {
             print("Stones dropping!")
@@ -70,15 +78,19 @@ class ViewController: UIViewController {
         if (isListining == true && (listiningStart - 4) == seconds){
             isListining = false
             if (!jumpSucces) {
-             jumpFailed()
+                jumpFailed()
+                lives -= 1
+                print(lives)
             } else {
-                
+                coinsCollected += 1
             }
          }
+        if(lives == 0) {
+            print("STOPPEN")
+        }
         
         
-        seconds -= 1     //This will decrement(count down)the seconds.
-        print(seconds)
+        
     }
     	
    
