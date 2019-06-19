@@ -34,12 +34,13 @@ func jumpCommand() {
     DispatchQueue.main.async() {
         playSound(sound:jumpSound)
     }
+}
 
 func jumpFailed() {
     DispatchQueue.main.async() {
         playSound(sound:jumpFailedSound)
-        }
     }
- 
-    
 }
+
+    
+

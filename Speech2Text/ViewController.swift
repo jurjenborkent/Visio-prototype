@@ -91,14 +91,14 @@ class ViewController: UIViewController {
         // hide recording views
 
         
-        getActions(actions: run)
-//        while (true) {
-//            getActions(aßctions: rocksFalling)
-//        }
-        
-        getGesture(gesture: speech) // Check gesture
-       // startIntro() // Start intro for the game
-      //  recording().recordIntro() // Recording for the intro
+//        getActions(actions: run)
+////        while (true) {
+////            getActions(aßctions: rocksFalling)
+////        }
+//
+//        getGesture(gesture: speech) // Check gesture
+//       // startIntro() // Start intro for the game
+//      //  recording().recordIntro() // Recording for the intro
         getActions(actions: run) // Start running action
        
     }
@@ -216,19 +216,22 @@ class ViewController: UIViewController {
                         }
                         // Play jump sound if word is equal to Soundex code
                         jumpCommand()
-                        jumpFailed()
                         recordedMessage = ""
                         sentence = ""
+                        
                     } else {
+                        if element != SoundexWord {
+                        print("niet gelijk aan codex!")
                         recordedMessage = ""
                         sentence = ""
+                        jumpFailed()
                         isFinal = false
-                       // getActions(actions: self.failed) // Stop the game
+                        break       	                // getActions(actions: self.failed) // Stop the game
                     }
-                    
-                    
+                    }
+    
                         currentIndex += 1
-                }
+                }	
                 recordedMessage = ""
                 sentence = ""
                 print("Sentence3:", sentence)
