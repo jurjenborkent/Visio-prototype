@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     var seconds = 60
     var player = AVAudioPlayer()
     
+    // function that was uses on tab command.
     func jump(_ sender: Any) {
         print("jump!") // testing button pressed tag
         
@@ -45,9 +46,12 @@ class ViewController: UIViewController {
         }	
     }
     
+    // function to run the timer.
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
         
+   
+    // function for updating the timer, decreasing the seconds en doing stuff within it.
     }
     @objc func updateTimer() {
         // Execute every 6 seconds
@@ -121,35 +125,35 @@ class ViewController: UIViewController {
 //        }
 //    }
     
-    @IBAction func didTapRecordButton(sender: UIButton) {
-        if audioEngine.isRunning {
-            audioEngine.stop()
-            recognitionRequest?.endAudio()
-        } else {
-            startRecording() // Start recording when button is pushed
-            self.recordingView.isHidden = false
-            self.fadedView.alpha = 0.0
-            self.fadedView.isHidden = false
-            UIView.animate(withDuration: 1.0) {
-                self.fadedView.alpha = 1.0
-            }
-        }
-    }
-    
-    @IBAction func stopRecording(sender: UIButton) {
-        if audioEngine.isRunning {
-            audioEngine.stop()
-            recognitionRequest?.endAudio()
-            audioEngine.inputNode.removeTap(onBus: 0)
-            UIView.animate(withDuration: 0.5, animations: {
-                self.fadedView.alpha = 0.0
-            }) { (finished) in
-                self.fadedView.isHidden = true
-                self.recordingView.isHidden = true
-                self.tableView.reloadData()
-            }
-        }
-    }
+//    @IBAction func didTapRecordButton(sender: UIButton) {
+//        if audioEngine.isRunning {
+//            audioEngine.stop()
+//            recognitionRequest?.endAudio()
+//        } else {
+//            startRecording() // Start recording when button is pushed
+//            self.recordingView.isHidden = false
+//            self.fadedView.alpha = 0.0
+//            self.fadedView.isHidden = false
+//            UIView.animate(withDuration: 1.0) {
+//                self.fadedView.alpha = 1.0
+//            }
+//        }
+//    }
+//
+//    @IBAction func stopRecording(sender: UIButton) {
+//        if audioEngine.isRunning {
+//            audioEngine.stop()
+//            recognitionRequest?.endAudio()
+//            audioEngine.inputNode.removeTap(onBus: 0)
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.fadedView.alpha = 0.0
+//            }) { (finished) in
+//                self.fadedView.isHidden = true
+//                self.recordingView.isHidden = true
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
 
     func startRecording() {
         
