@@ -4,7 +4,7 @@ import Speech
 
 let rockSound = getSound(soundName: "Rocks.wav")
 let jumpSound = getSound(soundName: "jump.mp3")
-let jumpFailedSound = getSound(soundName: "you-win.mp3")
+let jumpFailedSound = getSound(soundName: "failed.wav")
 
 func getSound(soundName:String) -> AVAudioPlayer? {
     let path = Bundle.main.path(forResource: soundName, ofType:nil)!

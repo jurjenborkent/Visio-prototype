@@ -42,7 +42,7 @@
         <!--Menu View Controller-->
         <scene sceneID="5Eg-Fz-PXd">
             <objects>
-                <viewController id="7Dv-2D-6yN" customClass="MenuViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" id="7Dv-2D-6yN" customClass="MenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0wL-1r-Tob">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     var recognitionTask: SFSpeechRecognitionTask?
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     
+    var isListining = false
+    var listiningStart = 0
+    var jumpSucces = false
     // Setting
     var timer = Timer()
     var seconds = 60
@@ -54,12 +57,25 @@ class ViewController: UIViewController {
     // function for updating the timer, decreasing the seconds en doing stuff within it.
     }
     @objc func updateTimer() {
-        // Execute every 6 seconds
-        if (seconds < 58 && seconds % 6 == 0) {
+        // Execute every 10 seconds
+        if (seconds < 55 && seconds % 10 == 0) {
             print("Stones dropping!")
             // Let a rock fall down
             getActions(actions: rocksFalling)
+            isListining = true
+            listiningStart = seconds
+            jumpSucces = false
         }
+        
+        if (isListining == true && (listiningStart - 4) == seconds){
+            isListining = false
+            if (!jumpSucces) {
+             jumpFailed()
+            } else {
+                
+            }
+         }
+        
         
         seconds -= 1     //This will decrement(count down)the seconds.
         print(seconds)
@@ -140,22 +156,23 @@ class ViewController: UIViewController {
 //        }
 //    }
 //
-//    @IBAction func stopRecording(sender: UIButton) {
-//        if audioEngine.isRunning {
-//            audioEngine.stop()
-//            recognitionRequest?.endAudio()
-//            audioEngine.inputNode.removeTap(onBus: 0)
-//            UIView.animate(withDuration: 0.5, animations: {
-//                self.fadedView.alpha = 0.0
-//            }) { (finished) in
-//                self.fadedView.isHidden = true
-//                self.recordingView.isHidden = true
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
+    func stopRecording() {
+        if audioEngine.isRunning {
+            audioEngine.stop()
+            recognitionRequest?.endAudio()
+            audioEngine.inputNode.removeTap(onBus: 0)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.fadedView.alpha = 0.0
+            }) { (finished) in
+                self.fadedView.isHidden = true
+                self.recordingView.isHidden = true
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     func startRecording() {
+    
         
         if let recognitionTask = recognitionTask {
             recognitionTask.cancel()
@@ -179,70 +196,70 @@ class ViewController: UIViewController {
             fatalError("Unable to create a speech audio buffer")
         }
         
+        
+        
         recognitionRequest.shouldReportPartialResults = true
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
-            // Get the Soundex function
-            let word = Soundex()
-            var isFinal = false
-            if let result = result {
-                var sentence = result.bestTranscription.formattedString
-                // Only pick the last word from the speech
-                var recordedMessage = sentence.components(separatedBy: " ").last
-                let SoundexWord = word.soundex(recordedMessage!)
+            if (self.isListining) {
                 
-                isFinal = result.isFinal
-                print("Recordedmessage:", SoundexWord)
-                print(result.bestTranscription.formattedString)
-                sentence = ""
-                print("Sentence:", sentence)
-                
-                // Store the data
-                let valueToSave = SoundexWord
-                UserDefaults.standard.set(valueToSave, forKey: "recordedMessage")
-                
-                // Check if word is equal to the Soundex code
-                var elements = ["J500","S165", "J510", "J400", "Y000", "J000", "J520", "D520", "S360", "P616", "P600", "N000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520", "S155", "T520", "J516", "S600", "S160", "S162"]
-                
-                var currentIndex = 0
-                for element in elements
-                {
-                    if element == SoundexWord {
-                        print("Found \(element) for index \(currentIndex)")
-                        
-                        if UserDefaults.standard.string(forKey: "recordedMessage") != nil {
-                            elements.append(valueToSave)
-                            print(elements)
-                        }
-                        // Play jump sound if word is equal to Soundex code
-                        jumpCommand()
-                        recordedMessage = ""
-                        sentence = ""
-                        
-                    } else {
-                        if element != SoundexWord {
-                        print("niet gelijk aan codex!")
-                        recordedMessage = ""
-                        sentence = ""
-                        jumpFailed()
-                        isFinal = false
-                        break       	                // getActions(actions: self.failed) // Stop the game
-                    }
-                    }
-    
-                        currentIndex += 1
-                }	
-                recordedMessage = ""
-                sentence = ""
-                print("Sentence3:", sentence)
-            }
+                print("aan het luisteren")
             
-            if error != nil || isFinal {
-                self.audioEngine.stop()
-                self.audioEngine.inputNode.removeTap(onBus: 0)
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
-                self.recordButton.self.isEnabled = true
+                // Get the Soundex function
+                let word = Soundex()
+                var isFinal = false
+                if let result = result {
+                    var sentence = result.bestTranscription.formattedString
+                    // Only pick the last word from the speech
+                    var recordedMessage = sentence.components(separatedBy: " ").last
+                    let SoundexWord = word.soundex(recordedMessage!)
+                    
+                    isFinal = result.isFinal
+                    print("Recordedmessage:", SoundexWord)
+                    print(result.bestTranscription.formattedString)
+                    sentence = ""
+                    print("Sentence:", sentence)
+                    
+                    // Store the data
+                    let valueToSave = SoundexWord
+                    UserDefaults.standard.set(valueToSave, forKey: "recordedMessage")
+                    
+                    // Check if word is equal to the Soundex code
+                    var elements = ["J500","S165", "J510", "J400", "Y000", "J000", "J520", "D520", "S360", "P616", "P600", "N000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520", "S155", "T520", "J516", "S600", "S160", "S162"]
+                    
+                    var currentIndex = 0
+                    for element in elements
+                    {
+                        if element == SoundexWord {
+                            print("Found \(element) for index \(currentIndex)")
+                            
+                            if UserDefaults.standard.string(forKey: "recordedMessage") != nil {
+                                elements.append(valueToSave)
+                                print(elements)
+                            }
+                            // Play jump sound if word is equal to Soundex code
+                            
+                            jumpCommand()
+                            print("Gesprongen!")
+                            recordedMessage = ""
+                            sentence = ""
+                            self.jumpSucces = true
+                            break
+                        }
+                        currentIndex += 1
+                    }
+                    recordedMessage = ""
+                    sentence = ""
+                    print("Sentence3:", sentence)
+                }
+            
+                
+                if error != nil || isFinal {
+                    self.audioEngine.stop()
+                    self.audioEngine.inputNode.removeTap(onBus: 0)
+                    self.recognitionRequest = nil
+                    self.recognitionTask = nil
+                }
             }
         })
 
