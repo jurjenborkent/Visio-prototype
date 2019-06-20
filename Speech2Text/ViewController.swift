@@ -87,13 +87,17 @@ class ViewController: UIViewController {
                 jumpFailed()
                 lives -= 1
                 print("levens: ", lives)
+                liveLabel.text = String(lives)
+                
             } else {
                 coinsCollected += 1
+                liveLabel.text = String(lives)
             }
         }
         
         if (lives == 0) {
             print("STOPPEN")
+            exit(0);
         }
         
 //        if (self.coinsCollected > 1) {
@@ -116,8 +120,12 @@ class ViewController: UIViewController {
         return audioEngine
     }()
 
+    @IBOutlet weak var liveLabel: UILabel!
+    @IBOutlet weak var coinLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        liveLabel.text = String(lives)
+        coinLabel.text = String(coinsCollected)
         runTimer()
         updateTimer()
         // request auth
