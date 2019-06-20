@@ -91,7 +91,7 @@ class ViewController: UIViewController {
                 
             } else {
                 coinsCollected += 1
-                liveLabel.text = String(lives)
+                coinLabel.text = String(coinsCollected)
             }
         }
         
