@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     var isListining = false
     var listiningStart = 0
     var jumpSucces = false
-   
+    
     // counter variables
     var lives = 3
     
@@ -91,14 +91,18 @@ class ViewController: UIViewController {
             } else {
                 coinsCollected += 1
                 coinLabel.text = String(coinsCollected)
+                UserDefaults.standard.set(coinsCollected, forKey: "highScore")
+                highScoreLabel.text = String(UserDefaults.standard.integer(forKey: "highScore"))
             }
         }
         
         if (lives == 0) {
             print("STOPPEN")
+//            if (UserDefaults.standard.integer(forKey: "highScore") > coinsCollected)
+            UserDefaults.standard.set(coinsCollected, forKey: "highScore")
+            
             exit(0);
         }
-        
 //        if (self.coinsCollected > 1) {
 //           self.rockDropInterval -= 3
 //        }
@@ -120,11 +124,15 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var liveLabel: UILabel!
     @IBOutlet weak var coinLabel: UILabel!
-   
+  
+    @IBOutlet weak var highScoreLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.set(coinsCollected, forKey: "highScore")
         liveLabel.text = String(lives)
         coinLabel.text = String(coinsCollected)
+        highScoreLabel.text = String(UserDefaults.standard.integer(forKey: "highScore"))
         runTimer()
         gameLoop()
         // request auth
