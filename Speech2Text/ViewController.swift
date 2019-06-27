@@ -141,7 +141,6 @@ class ViewController: UIViewController {
         UserDefaults.standard.set(coinsCollected, forKey: "highScore")
         liveLabel.text = String(lives)
         coinLabel.text = String(coinsCollected)
-        highScoreLabel.text = String(UserDefaults.standard.integer(forKey: "highScore"))
         runTimer()
         gameLoop()
         // request auth
