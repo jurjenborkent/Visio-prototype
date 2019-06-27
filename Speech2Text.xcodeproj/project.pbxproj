@@ -13,6 +13,7 @@
 		8973353A207A940500B8C1F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89733538207A940500B8C1F9 /* Main.storyboard */; };
 		8973353C207A940600B8C1F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8973353B207A940600B8C1F9 /* Assets.xcassets */; };
 		8973353F207A940600B8C1F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8973353D207A940600B8C1F9 /* LaunchScreen.storyboard */; };
+		C982EB7122C4BE9200115E55 /* UserDefaultsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C982EB6F22C4BE3B00115E55 /* UserDefaultsTest.swift */; };
 		D3AECB5222A02C020027AA32 /* Soundex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AECB5122A02C020027AA32 /* Soundex.swift */; };
 		F4137DA222A66C04008709D4 /* Speech2TextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4137DA122A66C04008709D4 /* Speech2TextTests.swift */; };
 		F4137DA922A66C07008709D4 /* SoundexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AECB5322A02CB50027AA32 /* SoundexTest.swift */; };
@@ -51,6 +52,7 @@
 		8973353B207A940600B8C1F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8973353E207A940600B8C1F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89733540207A940600B8C1F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C982EB6F22C4BE3B00115E55 /* UserDefaultsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTest.swift; sourceTree = "<group>"; };
 		D3AECB5122A02C020027AA32 /* Soundex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soundex.swift; sourceTree = "<group>"; };
 		D3AECB5322A02CB50027AA32 /* SoundexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundexTest.swift; sourceTree = "<group>"; };
 		F4137D9F22A66C04008709D4 /* Speech2TextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Speech2TextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 				8973353B207A940600B8C1F9 /* Assets.xcassets */,
 				F43AD0FE229D60FB000A066F /* Actions.swift */,
 				F43AD0FA229D3E18000A066F /* Gesture.swift */,
+				C982EB6F22C4BE3B00115E55 /* UserDefaultsTest.swift */,
 				F4137DAA22A67280008709D4 /* Intro.swift */,
 				F43AD100229D64C8000A066F /* RocksFalling.swift */,
 				D3AECB5122A02C020027AA32 /* Soundex.swift */,
@@ -271,6 +274,7 @@
 			files = (
 				F4137DA922A66C07008709D4 /* SoundexTest.swift in Sources */,
 				F4137DA222A66C04008709D4 /* Speech2TextTests.swift in Sources */,
+				C982EB7122C4BE9200115E55 /* UserDefaultsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
