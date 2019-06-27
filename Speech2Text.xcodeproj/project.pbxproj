@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1115611622C57E6800C652FA /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1115611522C57E6800C652FA /* GameOverViewController.swift */; };
 		111AEA5B22BB79AC00D711DB /* failed.wav in Resources */ = {isa = PBXBuildFile; fileRef = 111AEA5A22BB79AC00D711DB /* failed.wav */; };
 		1173D02222BA819200ADB70A /* failedv1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1173D02122BA819100ADB70A /* failedv1.wav */; };
 		89733535207A940500B8C1F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89733534207A940500B8C1F9 /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1115611522C57E6800C652FA /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		111AEA5A22BB79AC00D711DB /* failed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = failed.wav; sourceTree = "<group>"; };
 		1173D02122BA819100ADB70A /* failedv1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = failedv1.wav; sourceTree = "<group>"; };
 		89733531207A940500B8C1F9 /* Speech2Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speech2Text.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				F4B80DAD22897377007747F2 /* Jump.wav */,
+				1115611522C57E6800C652FA /* GameOverViewController.swift */,
 				F4B80DB122897383007747F2 /* Mario-coin-sound.mp3 */,
 				F4B80DBD2289A4EB007747F2 /* Rocks.wav */,
 				F4B80DB322897389007747F2 /* jump.mp3 */,
@@ -257,6 +260,7 @@
 				F43AD0FF229D60FB000A066F /* Actions.swift in Sources */,
 				89733535207A940500B8C1F9 /* AppDelegate.swift in Sources */,
 				F41DA4B522A9348100B80903 /* ViewController.swift in Sources */,
+				1115611622C57E6800C652FA /* GameOverViewController.swift in Sources */,
 				F4137DAB22A67280008709D4 /* Intro.swift in Sources */,
 				D3AECB5222A02C020027AA32 /* Soundex.swift in Sources */,
 				F43B2A7C22A7E20D008AAABD /* StartRecording.swift in Sources */,

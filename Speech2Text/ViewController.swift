@@ -91,8 +91,11 @@ class ViewController: UIViewController {
             } else {
                 coinsCollected += 1
                 coinLabel.text = String(coinsCollected)
-                UserDefaults.standard.set(coinsCollected, forKey: "highScore")
-                highScoreLabel.text = String(UserDefaults.standard.integer(forKey: "highScore"))
+//                UserDefaults.standard.set(coinsCollected, forKey: "highScore")
+                if (coinsCollected < UserDefaults.standard.integer(forKey: "highScore")) {
+                    UserDefaults.standard.set(coinsCollected, forKey: "highScore")
+                }
+//                highScoreLabel.text = String(UserDefaults.standard.integer(forKey: "highScore"))
             }
         }
         
@@ -101,7 +104,13 @@ class ViewController: UIViewController {
 //            if (UserDefaults.standard.integer(forKey: "highScore") > coinsCollected)
             UserDefaults.standard.set(coinsCollected, forKey: "highScore")
             
-            exit(0);
+            let homeView = self.storyboard?.instantiateViewController(withIdentifier: "GameOverViewController") as! GameOverViewController
+            present(homeView, animated: true, completion: nil)
+            
+            stopRecording()
+        
+            
+            
         }
 //        if (self.coinsCollected > 1) {
 //           self.rockDropInterval -= 3
@@ -183,13 +192,6 @@ class ViewController: UIViewController {
             audioEngine.stop()
             recognitionRequest?.endAudio()
             audioEngine.inputNode.removeTap(onBus: 0)
-            UIView.animate(withDuration: 0.5, animations: {
-                self.fadedView.alpha = 0.0
-            }) { (finished) in
-                self.fadedView.isHidden = true
-                self.recordingView.isHidden = true
-                self.tableView.reloadData()
-            }
         }
     }
 
