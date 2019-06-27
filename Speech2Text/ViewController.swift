@@ -42,7 +42,6 @@ class ViewController: UIViewController {
     var seconds = 0
     var player = AVAudioPlayer()
     
-    // modulo googlon bereken restan
     
     // function that was uses on tab command.
     func jump(_ sender: Any) {
@@ -62,15 +61,15 @@ class ViewController: UIViewController {
     
     // function to run the timer.
     func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(ViewController.gameLoop)), userInfo: nil, repeats: true)
         
    
-    // function for updating the timer, decreasing the seconds en doing stuff within it. GAME LOOP
+    // function for increasing the seconds en doing stuff within it. GAME LOOP
     }
-    @objc func updateTimer() {
+    @objc func gameLoop() {
         seconds += 1     //This will increment (count up) the seconds.
         print(seconds)
-        // Execute every 10 seconds
+        // Execute after 5 seconds every 10 secs, let rocks fall
         if (seconds > 5 && ((rockDropped == 0) || (rockDropped + self.rockDropInterval) == seconds)) {
             print("Stones dropping!")
             // Let a rock fall down
@@ -105,8 +104,7 @@ class ViewController: UIViewController {
 //        }
        
     }
-    	
-   
+    
     lazy var speechRecognizer: SFSpeechRecognizer? = {
         if let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "nl-NL")) {
             recognizer.delegate = self
@@ -122,12 +120,13 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var liveLabel: UILabel!
     @IBOutlet weak var coinLabel: UILabel!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         liveLabel.text = String(lives)
         coinLabel.text = String(coinsCollected)
         runTimer()
-        updateTimer()
+        gameLoop()
         // request auth
 //        self.requestAuth()
         startRecording()
@@ -170,20 +169,6 @@ class ViewController: UIViewController {
 //        }
 //    }
     
-//    @IBAction func didTapRecordButton(sender: UIButton) {
-//        if audioEngine.isRunning {
-//            audioEngine.stop()
-//            recognitionRequest?.endAudio()
-//        } else {
-//            startRecording() // Start recording when button is pushed
-//            self.recordingView.isHidden = false
-//            self.fadedView.alpha = 0.0
-//            self.fadedView.isHidden = false
-//            UIView.animate(withDuration: 1.0) {
-//                self.fadedView.alpha = 1.0
-//            }
-//        }
-//    }
 //
     func stopRecording() {
         if audioEngine.isRunning {
@@ -201,8 +186,6 @@ class ViewController: UIViewController {
     }
 
 
-    
-    
     func startRecording() {
     
         
@@ -256,7 +239,7 @@ class ViewController: UIViewController {
                     UserDefaults.standard.set(valueToSave, forKey: "recordedMessage")
                     
                     // Check if word is equal to the Soundex code
-                    let elements = ["J500","S165", "J510", "J400", "Y000", "J000", "J520", "D520", "S360", "P616", "P600", "N000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520", "S155", "T520", "J516", "S600", "S160", "S162"]
+                    let elements = ["I500", "J500","S165", "J510", "J400", "Y000", "J000", "J520", "D520", "S360", "P616", "P600", "N000", "R520", "P600", "P660", "R000", "P662", "R200", "Z520", "V526", "F650", "D652", "S365", "K652", "R526", "H520", "S155", "T520", "J516", "S600", "S160", "S162",]
                     
                     var currentIndex = 0
                     for element in elements
