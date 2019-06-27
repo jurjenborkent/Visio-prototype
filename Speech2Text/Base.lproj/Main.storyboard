@@ -28,20 +28,13 @@
                                 <rect key="frame" x="31" y="229" width="313" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdH-aG-YVw">
                                 <rect key="frame" x="31" y="309" width="313" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHu-zz-dWY">
-                                <rect key="frame" x="166" y="454" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -57,7 +50,6 @@
                     </view>
                     <connections>
                         <outlet property="coinLabel" destination="WdH-aG-YVw" id="okw-4f-YuG"/>
-                        <outlet property="highScoreLabel" destination="aHu-zz-dWY" id="s38-j7-VbM"/>
                         <outlet property="liveLabel" destination="KGn-bV-VpF" id="lAc-z9-Scs"/>
                     </connections>
                 </viewController>
@@ -132,9 +124,6 @@
                         <viewLayoutGuide key="safeArea" id="TEx-Jf-Q16"/>
                     </view>
                     <navigationItem key="navigationItem" id="ymH-MS-kez"/>
-                    <connections>
-                        <outlet property="highScoreLabel" destination="aHu-zz-dWY" id="oUT-uh-zvZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5bW-mf-bjP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
